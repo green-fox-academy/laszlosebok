@@ -1,0 +1,71 @@
+body {
+    margin: 0;
+    background-image: url("../media/background.png");
+    font-family: 'Consolas', courier;
+    min-width: 700px;
+    overflow: scroll;
+}
+
+.header {
+    background-color: #333333;
+    height: 52px;
+}
+
+nav {
+    padding-top: 15px;
+    text-align: right;
+    text-transform: uppercase;
+}
+
+.logo {
+    margin-top: 10px;
+    float: left;
+}
+
+main,
+.header {
+    padding: 0 10%;
+}
+
+h1 {
+    margin-bottom: 25px;
+}
+
+h2 {
+    margin: 15px 0;
+}
+
+h1,
+h2 {
+    font-family: 'Barlow Condensed', sans-serif;
+}
+
+a {
+    margin: 0 30px;
+}
+
+a,
+h2 {
+    color: #ff0099;
+}
+
+.section-divider {
+    border: 0px;
+    text-align: center;
+    letter-spacing: 10px;
+    margin-right: -10px;
+}
+
+#wiki h1 {
+    text-align: center;
+}
+
+dt {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+dd {
+    margin: 10px 0;
+    font-size: 0.9em;
+}
