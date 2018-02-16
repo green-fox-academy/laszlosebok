@@ -16,9 +16,8 @@ public class SubStr {
         String[] splitStr = input.split(" ");
         for (int i = 0; i < splitStr.length; i++) {
             if (splitStr[i].equals(q)) {
-                int wordsToBeCounted = i;
                 position += i;
-                for (int j = 0; j < wordsToBeCounted; j++) {
+                for (int j = 0; j < i; j++) {
                     position += splitStr[j].length();
                 }
                 return position;
