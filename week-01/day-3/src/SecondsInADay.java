@@ -11,7 +11,7 @@ public class SecondsInADay {
         int totalMinutes = 59;
         int totalSeconds = 59;
 
-        int difference = (((totalHours * 60) + totalMinutes * 60) + totalSeconds) - (((currentHours * 60) + currentMinutes * 60) + currentSeconds);
+        int difference = ((((totalHours * 60 + totalMinutes) * 60) + totalSeconds )- (((currentHours * 60 + currentMinutes) * 60) + currentSeconds ));
 
         System.out.println(difference + " seconds remaining from the day.");
     }
