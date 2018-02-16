@@ -27,7 +27,7 @@ public class DrawPyramid {
 
             currentLine = "";
 
-            for (int j = 0; j < (pyramidLines - i); j++) {
+            for (int j = 1; j < (pyramidLines - i); j++) {
                 currentLine += spaceElement;
             }
 
