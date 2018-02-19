@@ -1,3 +1,5 @@
 .idea
-/week-01/day-3/out
+out
 *.iml
+*.xml
+practice
