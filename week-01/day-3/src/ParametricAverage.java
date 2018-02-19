@@ -12,7 +12,7 @@ public class ParametricAverage {
         Scanner scanner = new Scanner(System.in);
         int howMany;
         int currentNumber;
-        int sum = 0;
+        double sum = 0;
         double avg;
 
         System.out.println("How many numbers do you want to work with?");
@@ -24,22 +24,11 @@ public class ParametricAverage {
             System.out.println("Please, Enter a number:");
             currentNumber = scanner.nextInt();
             numCollection[i] = currentNumber;
-        }
-
-        for (int i = 0; i < howMany; i++) {
             sum += numCollection[i];
         }
 
         avg = sum / howMany;
 
-
         System.out.println("Sum: " + sum + ", Average: " + avg);
-
-        /*
-        System.out.println("--------------");
-        for (int i = 0; i < howMany; i++) {
-            System.out.println(numCollection[i]);
-        }
-        */
     }
 }
