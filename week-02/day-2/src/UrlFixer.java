@@ -12,7 +12,7 @@ public class UrlFixer {
         String fixedUrl = url.replace("bots", "odds");
 
         // Simple way
-        url = fixedUrl.replace("s/", "s:/");
+        //url = fixedUrl.replace("s/", "s:/");
 
         // Awfully complicated way to add the ":"
 
@@ -21,8 +21,8 @@ public class UrlFixer {
             extendedUrl[i] = extendedUrl[i - 1];
         }
         extendedUrl[5] = ":";
-        
-        //url = String.join("", extendedUrl);
+
+        url = String.join("", extendedUrl);
 
         System.out.println(url);
     }
