@@ -19,15 +19,16 @@ public class GuessMyNumber {
             if (userGuess == guessThis) {
                 gameWin();
             } else {
-                checkNumber(userGuess);
+                compareNumber(userGuess);
             }
         }
         System.out.println("You lost. The number was " + guessThis);
     }
     public static void gameWin() {
         System.out.println("Congratulations! You won!");
+        System.exit(0);
     }
-    public static void checkNumber(int userGuess) {
+    public static void compareNumber(int userGuess) {
         remainingLives--;
         if (userGuess > guessThis) {
             System.out.println("Too high. You have " + remainingLives + " lives left.");
