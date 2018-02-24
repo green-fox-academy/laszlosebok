@@ -15,7 +15,7 @@ public class Triangles {
   static int triangleSide = 25;
   static int triangleHeight;
   
-  static List<ArrayList<Integer>> triangleCoordinates = new ArrayList<>();
+  static List<ArrayList<Integer>> triangleTopCoordinates = new ArrayList<>();
   static ArrayList<Integer> triangleXCoordinates = new ArrayList<>();
   static ArrayList<Integer> triangleYCoordinates = new ArrayList<>();
   
@@ -40,35 +40,35 @@ public class Triangles {
   }
   
   public static void initLists(){
-    int startX = WIDTH / 2;
-    
-    triangleXCoordinates.add(startX);
+    // Sets up initial top coordinates for the topmost triangle
+    triangleXCoordinates.add(WIDTH / 2);
     triangleYCoordinates.add(START_HEIGHT);
-    triangleCoordinates.add(triangleXCoordinates);
-    triangleCoordinates.add(triangleYCoordinates);
+    triangleTopCoordinates.add(triangleXCoordinates);
+    triangleTopCoordinates.add(triangleYCoordinates);
+    // Sets up the ArrayList which will store the bottom coordinates of the triangles.
     newTriangleCoordinates.add(newTriangleXCoordinates);
     newTriangleCoordinates.add(newTriangleYCoordinates);
   }
   
   public static void drawTriangles(Graphics graphics) {
-    for (int i = 0; i < triangleRows; i++) {
-      calcTriangleCoordinates(graphics);
+    for (int rows = triangleRows; rows > 0; rows--) {
+      drawTriangleRow(graphics);
     }
   }
   
-  public static void calcTriangleCoordinates(Graphics graphics) {
+  public static void drawTriangleRow(Graphics graphics) {
     cleanUp();
-    for (int i = 0; i < triangleCoordinates.get(0).size(); i++) {
-      int xCoordinateLeft = triangleCoordinates.get(0).get(i)-triangleSide/2;
-      int xCoordinateRight = triangleCoordinates.get(0).get(i)+triangleSide/2;
-      int xOriginal = triangleCoordinates.get(0).get(i);
+    for (int i = 0; i < triangleTopCoordinates.get(0).size(); i++) {
+      int xCoordinateLeft = triangleTopCoordinates.get(0).get(i)-triangleSide/2;
+      int xCoordinateRight = triangleTopCoordinates.get(0).get(i)+triangleSide/2;
+      int xOriginal = triangleTopCoordinates.get(0).get(i);
 
       newTriangleCoordinates.get(0).add(xCoordinateLeft);
       newTriangleCoordinates.get(0).add(xCoordinateRight);
       
-      int yCoordinateLeft = triangleCoordinates.get(1).get(i)+triangleHeight;
-      int yCoordinateRight = triangleCoordinates.get(1).get(i)+triangleHeight;
-      int yOriginal = triangleCoordinates.get(1).get(i);
+      int yCoordinateLeft = triangleTopCoordinates.get(1).get(i)+triangleHeight;
+      int yCoordinateRight = triangleTopCoordinates.get(1).get(i)+triangleHeight;
+      int yOriginal = triangleTopCoordinates.get(1).get(i);
 
       newTriangleCoordinates.get(1).add(yCoordinateLeft);
       newTriangleCoordinates.get(1).add(yCoordinateRight);
@@ -83,11 +83,11 @@ public class Triangles {
   }
   
   private static void copyTriangleCoordinates() {
-    triangleCoordinates.get(0).clear();
-    triangleCoordinates.get(1).clear();
+    triangleTopCoordinates.get(0).clear();
+    triangleTopCoordinates.get(1).clear();
     for (int i = 0; i < newTriangleCoordinates.size(); i++) {
       for (int j = 0; j < newTriangleCoordinates.get(i).size(); j++) {
-        triangleCoordinates.get(i).add(newTriangleCoordinates.get(i).get(j));
+        triangleTopCoordinates.get(i).add(newTriangleCoordinates.get(i).get(j));
       }
     }
   }
