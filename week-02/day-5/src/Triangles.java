@@ -58,30 +58,40 @@ public class Triangles {
   
   public static void drawTriangleRow(Graphics graphics) {
     cleanUp();
-    for (int i = 0; i < triangleTopCoordinates.get(0).size(); i++) {
-      int xCoordinateLeft = triangleTopCoordinates.get(0).get(i)-triangleSide/2;
-      int xCoordinateRight = triangleTopCoordinates.get(0).get(i)+triangleSide/2;
-      int xOriginal = triangleTopCoordinates.get(0).get(i);
-
-      newTriangleCoordinates.get(0).add(xCoordinateLeft);
-      newTriangleCoordinates.get(0).add(xCoordinateRight);
-      
-      int yCoordinateLeft = triangleTopCoordinates.get(1).get(i)+triangleHeight;
-      int yCoordinateRight = triangleTopCoordinates.get(1).get(i)+triangleHeight;
-      int yOriginal = triangleTopCoordinates.get(1).get(i);
-
-      newTriangleCoordinates.get(1).add(yCoordinateLeft);
-      newTriangleCoordinates.get(1).add(yCoordinateRight);
-
-      int[][] drawThis = {
-        {xOriginal, xCoordinateLeft, xCoordinateRight},
-        {yOriginal, yCoordinateLeft, yCoordinateRight}
-      };
+    // iterates though the top coordinates
+    for (int triangleIndex = 0; triangleIndex < triangleTopCoordinates.get(0).size(); triangleIndex++) {
+      int[][] drawThis = calcTriangleCoordinates(triangleIndex);
       drawTriangle(graphics, drawThis);
     }
     copyTriangleCoordinates();
   }
+  // calculates the bottom coordinates corresponding to the top coordinate
+  private static int[][] calcTriangleCoordinates(int index) {
+    int xCoordinate = triangleTopCoordinates.get(0).get(index);
+    int xCoordinateLeft = xCoordinate-triangleSide/2;
+    int xCoordinateRight = xCoordinate+triangleSide/2;
   
+    int yCoordinate = triangleTopCoordinates.get(1).get(index);
+    int yCoordinateLeft = yCoordinate+triangleHeight;
+    int yCoordinateRight = yCoordinate+triangleHeight;
+  
+    // saves the bottom coordinates as they will be the new top coordinates in the next row
+    newTriangleCoordinates.get(0).add(xCoordinateLeft);
+    newTriangleCoordinates.get(0).add(xCoordinateRight);
+  
+    newTriangleCoordinates.get(1).add(yCoordinateLeft);
+    newTriangleCoordinates.get(1).add(yCoordinateRight);
+    
+    // puts the calculated values into a multi array
+    int[][] triangleCoordinates = {
+      {xCoordinate, xCoordinateLeft, xCoordinateRight},
+      {yCoordinate, yCoordinateLeft, yCoordinateRight}
+    };
+    
+    return triangleCoordinates;
+  }
+  // Cleans up the ArrayList with the top coordinates, to put the bottom coordinates into
+  // as they will be the next row's top coordinates.
   private static void copyTriangleCoordinates() {
     triangleTopCoordinates.get(0).clear();
     triangleTopCoordinates.get(1).clear();
