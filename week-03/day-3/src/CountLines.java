@@ -11,7 +11,7 @@ public class CountLines {
     // should not raise any error.
     String filePathString = "my-file.txt";
     counter(filePathString);
-    System.out.println(counter(filePathString));
+    // System.out.println(counter(filePathString));
   }
   public static int counter(String pathString) {
     Path path = Paths.get(pathString);
