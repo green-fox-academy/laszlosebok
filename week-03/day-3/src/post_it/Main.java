@@ -1,4 +1,4 @@
-package PostIt;
+package post_it;
 
 public class Main {
   public static void main(String[] args) {

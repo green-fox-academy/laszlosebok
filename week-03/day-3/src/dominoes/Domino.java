@@ -1,4 +1,4 @@
-package Dominoes;
+package dominoes;
 
 import java.util.Arrays;
 
