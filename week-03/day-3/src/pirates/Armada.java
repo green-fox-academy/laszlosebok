@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Armada {
-  List<Ship> shipList = new ArrayList<>();
+  private List<Ship> shipList = new ArrayList<>();
   
   
   Armada (int numberOfShips) {

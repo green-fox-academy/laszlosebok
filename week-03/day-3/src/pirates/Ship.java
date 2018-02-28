@@ -88,7 +88,7 @@ public class Ship {
     
   }
   
-  public void addDeaths() {
+  private void addDeaths() {
     int aliveCrew = aliveCounter(shipCrew);
     int deaths = (int)(1 + Math.random() * aliveCrew);
     System.out.println("The death toll on the loser ship is: " + deaths);
@@ -105,7 +105,7 @@ public class Ship {
     }
   }
   
-  public void haveParty(){
+  private void haveParty(){
     int maxRandom = 20;
     int minRandom = 5;
     int rumsToDrink = (int)(minRandom + Math.random() * maxRandom);
