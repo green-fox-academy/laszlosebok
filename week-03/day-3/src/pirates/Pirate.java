@@ -16,9 +16,9 @@ public class Pirate {
   
   public void brawl(Pirate pirateToBrawl){
     int chance = (int)(1 + (Math.random() * 3));
-    if (isDead | pirateToBrawl.isDead) {
+    if (isDead || pirateToBrawl.isDead) {
       System.out.println("They cannot fight. One if them is dead.");
-    } else if ( isPassedOut | pirateToBrawl.isPassedOut ) {
+    } else if ( isPassedOut || pirateToBrawl.isPassedOut ) {
       System.out.println("They cannot fight. One if them is passed out.");
     } else {
       brawlConditions(chance, this, pirateToBrawl);
