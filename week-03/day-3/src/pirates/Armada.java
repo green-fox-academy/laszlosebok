@@ -15,24 +15,39 @@ public class Armada {
   }
   
   public void war(Armada otherArmada) {
+    int shipsLeftInFirst = this.shipList.size();
+    int shipsLeftInSecond = otherArmada.shipList.size();
+    int battleNumber = 1;
     
-    for (Ship currentShip : this.shipList) {
-      for (int i = 0; i < otherArmada.shipList.size(); i++) {
-        System.out.println("Details before fight:");
-        printShipDetails(currentShip, otherArmada.shipList.get(i));
-        if (!currentShip.battle(otherArmada.shipList.get(i))) {
-          System.out.println("Ship of the second Armada won.");
-          System.out.println("Details after fight:");
-          printShipDetails(currentShip, otherArmada.shipList.get(i));
-          
-          break;
-        }
-        System.out.println("Ship of the first Armada won.");
-        System.out.println("Details after fight:");
-        printShipDetails(currentShip, otherArmada.shipList.get(i));
+    while(shipsLeftInFirst > 0 && shipsLeftInSecond > 0) {
+      System.out.println(battleNumber);
+      battleNumber++;
+      Ship nextShipInFirst = this.shipList.get(0);
+      Ship nextShipInSecond = otherArmada.shipList.get(0);
+      
+      if (nextShipInFirst.battle(nextShipInSecond)) {
+        System.out.println("First ship won the battle!");
+        otherArmada.shipList.remove(0);
+        shipsLeftInSecond--;
+      } else {
+        System.out.println("Second ship won the battle!");
+        this.shipList.remove(0);
+        shipsLeftInFirst--;
       }
     }
+    evaluateResult(shipsLeftInFirst, shipsLeftInSecond);
   }
+  
+  private void evaluateResult(int firstLeft, int secondLeft) {
+    if (firstLeft == 0) {
+      System.out.println("The second Armada won");
+    } else if (secondLeft == 0) {
+      System.out.println("The first Armada won");
+    } else {
+      System.out.println("Something went wrong... HARRR!");
+    }
+  }
+  
   private static void printShipDetails(Ship fromFirstArmada, Ship fromSecondArmada) {
     System.out.println(fromFirstArmada);
     System.out.println(fromSecondArmada);
