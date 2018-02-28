@@ -8,7 +8,7 @@ public class BattleApp {
   
   public static void main(String[] args) {
     int numberOfShips = shipNumber();
-    List<Ship> shipList = createShips(numberOfShips);
+    List<Ship> shipList = createArmada(numberOfShips);
     printShipDetails(shipList);
     battleFirstTwo(shipList);
     printShipDetails(shipList);
@@ -37,7 +37,7 @@ public class BattleApp {
     
   }
   
-  private static List<Ship> createShips(int numberOfShips) {
+  private static List<Ship> createArmada(int numberOfShips) {
     List<Ship> shipList = new ArrayList<>();
     for (int index = 0; index < numberOfShips; index++) {
       shipList.add(new Ship());
