@@ -1,54 +1,73 @@
 import javax.swing.*;
 import java.awt.*;
-import java.util.Arrays;
 
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
 
 public class Graphic1 {
-  static int WIDTH = 1500;
-  static int HEIGHT = 1500;
+  static int WIDTH = 729;
+  static int HEIGHT = 729;
   
   private static final int SQUARE_END_POINTS = 4;
-  private static final int[] ORIGINAL_X_ARRAY = {0, 0, WIDTH, WIDTH};
-  private static final int[] ORIGINAL_Y_ARRAY = {0, 0, HEIGHT, HEIGHT};
   
   private static void mainDraw(Graphics graphics) {
     // https://github.com/greenfox-academy/teaching-materials/blob/master/workshop/recursion/drawing/graphic.png
-    int[] canvStartX = {0, 0, WIDTH, WIDTH};
-    int[] canvStartY = {0, 0, HEIGHT, HEIGHT};
-    divideToThirds(graphics, canvStartX, canvStartY);
+    int[] canvasXCoordinates = {0, WIDTH, WIDTH, 0};
+    int[] canvasYCoordinates = {0, 0, HEIGHT, HEIGHT};
+    
+    drawMainSquare(graphics, canvasXCoordinates, canvasYCoordinates);
+    drawFourSquares(graphics, canvasXCoordinates, canvasYCoordinates);
   }
-  private static void divideToThirds(Graphics graphics, int[] canvStartX, int[] canvStartY) {
-    
-    int topStartX = calcStartXTop(canvStartX);
-    int topStartY = calcStartYTop(canvStartY);
-    int[] topXCoordinates = calcXCoordinates(topStartX, canvStartX);
-    int[] topYCoordinates = calcYCoordinates(topStartY, canvStartY);
-    drawSquare(graphics, topXCoordinates, topYCoordinates);
-    divideToThirds(graphics, topXCoordinates, topYCoordinates);
   
+  private static void drawMainSquare(Graphics graphics, int[] canvStartX, int[] canvStartY) {
+    graphics.drawPolygon(canvStartX, canvStartY, SQUARE_END_POINTS);
+  }
+  
+  private static void drawFourSquares(Graphics graphics, int[] canvasXCoordinates, int[] canvasYCoordinates) {
+    // if the sides are less than...
+    if((canvasXCoordinates[1] - canvasXCoordinates[0]) < 2){
+      return;
+    }
     
-    int rightStartX = calcStartXRight(canvStartX);
-    int rightStartY = calcStartYRight(canvStartY);
-    int[] rightXCoordinates = calcXCoordinates(rightStartX, canvStartX);
-    int[] rightYCoordinates = calcYCoordinates(rightStartY, canvStartY);
+    /*
+     * Each part calculates the top-left coordinates for the respective square
+     * Than uses that to calculate the remaining 3 coordinates.
+     * Those 4 pair of coordinates are used as the next canvas coordinates.
+     * And they are used to draw the square.
+     */
+    
+    // Top Square
+    int topStartX = calcStartXTop(canvasXCoordinates);
+    int topStartY = calcStartYTop(canvasYCoordinates);
+    int[] topXCoordinates = calcXCoordinates(topStartX, canvasXCoordinates);
+    int[] topYCoordinates = calcYCoordinates(topStartY, canvasYCoordinates);
+    drawSquare(graphics, topXCoordinates, topYCoordinates);
+  
+    // Right Square
+    int rightStartX = calcStartXRight(canvasXCoordinates);
+    int rightStartY = calcStartYRight(canvasYCoordinates);
+    int[] rightXCoordinates = calcXCoordinates(rightStartX, canvasXCoordinates);
+    int[] rightYCoordinates = calcYCoordinates(rightStartY, canvasYCoordinates);
     drawSquare(graphics, rightXCoordinates, rightYCoordinates);
-    divideToThirds(graphics, rightXCoordinates, rightYCoordinates);
     
-    int bottomStartX = calcStartXBottom(canvStartX);
-    int bottomStartY = calcStartYBottom(canvStartY);
-    int[] bottomXCoordinates = calcXCoordinates(bottomStartX, canvStartX);
-    int[] bottomYCoordinates = calcYCoordinates(bottomStartY, canvStartY);
+    // Bottom Square
+    int bottomStartX = calcStartXBottom(canvasXCoordinates);
+    int bottomStartY = calcStartYBottom(canvasYCoordinates);
+    int[] bottomXCoordinates = calcXCoordinates(bottomStartX, canvasXCoordinates);
+    int[] bottomYCoordinates = calcYCoordinates(bottomStartY, canvasYCoordinates);
     drawSquare(graphics, bottomXCoordinates, bottomYCoordinates);
-    divideToThirds(graphics, bottomXCoordinates, bottomYCoordinates);
 
-    int leftStartX = calcStartXLeft(canvStartX);
-    int leftStartY = calcStartYLeft(canvStartY);
-    int[] leftXCoordinates = calcXCoordinates(leftStartX, canvStartX);
-    int[] leftYCoordinates = calcYCoordinates(leftStartY, canvStartY);
+    // Left Square
+    int leftStartX = calcStartXLeft(canvasXCoordinates);
+    int leftStartY = calcStartYLeft(canvasYCoordinates);
+    int[] leftXCoordinates = calcXCoordinates(leftStartX, canvasXCoordinates);
+    int[] leftYCoordinates = calcYCoordinates(leftStartY, canvasYCoordinates);
     drawSquare(graphics, leftXCoordinates, leftYCoordinates);
-    divideToThirds(graphics, leftXCoordinates, leftYCoordinates);
     
+    // Recursively calls each function with the new canvas coordinates.
+    drawFourSquares(graphics, topXCoordinates, topYCoordinates);
+    drawFourSquares(graphics, rightXCoordinates, rightYCoordinates);
+    drawFourSquares(graphics, bottomXCoordinates, bottomYCoordinates);
+    drawFourSquares(graphics, leftXCoordinates, leftYCoordinates);
   }
   
   private static void drawSquare(Graphics graphics, int[] topXCoordinates, int[] topYCoordinates) {
@@ -57,7 +76,7 @@ public class Graphic1 {
   
   private static int[] calcXCoordinates(int startX, int[] canvStartX) {
     int[] rightXCoordinates = new int[4];
-    int side = (canvStartX[2] - canvStartX[0]) / 3;
+    int side = (canvStartX[1] - canvStartX[0]) / 3;
     
     rightXCoordinates[0] = startX;
     rightXCoordinates[1] = startX + side;
@@ -80,7 +99,7 @@ public class Graphic1 {
   }
   
   private static int calcStartXTop(int[] canvStartX){
-    return canvStartX[0]+(canvStartX[2] - canvStartX[0]) / 3;
+    return canvStartX[0] + (canvStartX[1] - canvStartX[0]) / 3;
   }
   
   private static int calcStartYTop(int[] canvStartY){
@@ -88,19 +107,19 @@ public class Graphic1 {
   }
   
   private static int calcStartXRight(int[] canvStartX) {
-    return canvStartX[0] + ((canvStartX[2] - canvStartX[0]) / 3 * 2);
+    return canvStartX[0] + ((canvStartX[1] - canvStartX[0]) / 3 * 2);
   }
   
   private static int calcStartYRight(int[] canvStartY){
-    return canvStartY[0] + canvStartY[2] / 3;
+    return canvStartY[0] + (canvStartY[2] - canvStartY[0]) / 3;
   }
   
   private static int calcStartXBottom(int[] canvStartX){
-    return canvStartX[0] + (canvStartX[2] - canvStartX[0]) / 3;
+    return canvStartX[0] + (canvStartX[1] - canvStartX[0]) / 3;
   }
   
   private static int calcStartYBottom(int[] canvStartY){
-    return canvStartY[0] + canvStartY[2] / 3 ;
+    return canvStartY[0] + (canvStartY[2] - canvStartY[1]) / 3 * 2;
   }
   
   private static int calcStartXLeft(int[] canvStartX) {
@@ -108,7 +127,7 @@ public class Graphic1 {
   }
   
   private static int calcStartYLeft(int[] canvStartY){
-    return canvStartY[0]+canvStartY[2] / 3;
+    return canvStartY[0] + (canvStartY[2] - canvStartY[0]) / 3;
   }
   
   
