@@ -4,8 +4,8 @@ import java.awt.*;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
 
 public class Graphic1 {
-  static int WIDTH = 729;
-  static int HEIGHT = 729;
+  static int WIDTH = 1459;
+  static int HEIGHT = 1459;
   
   private static final int SQUARE_END_POINTS = 4;
   
@@ -18,8 +18,8 @@ public class Graphic1 {
     drawFourSquares(graphics, canvasXCoordinates, canvasYCoordinates);
   }
   
-  private static void drawMainSquare(Graphics graphics, int[] canvStartX, int[] canvStartY) {
-    graphics.drawPolygon(canvStartX, canvStartY, SQUARE_END_POINTS);
+  private static void drawMainSquare(Graphics graphics, int[] canvasXCoordinates, int[] canvasYCoordinates) {
+    graphics.drawPolygon(canvasXCoordinates, canvasYCoordinates, SQUARE_END_POINTS);
   }
   
   private static void drawFourSquares(Graphics graphics, int[] canvasXCoordinates, int[] canvasYCoordinates) {
@@ -98,6 +98,7 @@ public class Graphic1 {
     return rightYCoordinates;
   }
   
+  // Math heavy calculations below to determine each squares starting x-y coordinate pairs
   private static int calcStartXTop(int[] canvStartX){
     return canvStartX[0] + (canvStartX[1] - canvStartX[0]) / 3;
   }
@@ -136,11 +137,14 @@ public class Graphic1 {
   
   public static void main(String[] args) {
     JFrame jFrame = new JFrame("Drawing");
+    ImagePanel imagePanel = new ImagePanel();
+    
     jFrame.setSize(new Dimension(WIDTH, HEIGHT));
     jFrame.setDefaultCloseOperation(EXIT_ON_CLOSE);
-    jFrame.add(new ImagePanel());
+    jFrame.add(imagePanel);
     jFrame.setLocationRelativeTo(null);
     jFrame.setVisible(true);
+    imagePanel.setBackground(Color.YELLOW);
   }
   
   static class ImagePanel extends JPanel {
