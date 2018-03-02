@@ -1,4 +1,4 @@
-package Triangles;
+package triangles;
 
 import java.awt.*;
 
