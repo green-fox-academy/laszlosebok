@@ -30,9 +30,9 @@ public class Main {
       sponsor.hire();
     }
   
-    for (Person person : people) {
-      person.introduce();
-      person.getGoal();
-    }
+//    for (Person person : people) {
+//      person.introduce();
+//      person.getGoal();
+//    }
   }
 }
