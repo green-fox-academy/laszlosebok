@@ -43,11 +43,11 @@ public class Garden {
   
   public void getInfo() {
     for (Plant currentPlant : plantsInGarden) {
-      String needsWater = "";
+      String needsWater;
       if (currentPlant.isWaterable()) {
         needsWater = " needs water.";
       } else {
-        needsWater = " doesnt need water.";
+        needsWater = " doesn't need water.";
       }
       System.out.println("The " + currentPlant.getColor() + " " + currentPlant.getType() + " " +
           needsWater);
