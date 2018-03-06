@@ -1,3 +1,5 @@
+package homework;
+
 public class Sponsor {
   
   private String name = "Jane Doe";

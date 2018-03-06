@@ -1,3 +1,5 @@
+package homework;
+
 public class Person {
   
   private String name = "Jane Doe";
