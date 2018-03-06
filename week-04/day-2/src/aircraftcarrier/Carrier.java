@@ -30,16 +30,16 @@ public class Carrier {
     fillAircrafts();
   }
   
-  void fillAircrafts (){
+  private void fillAircrafts (){
     for (Aircraft currentAircraft : aircraftList) {
       if (currentAircraft.getType().equals("F35")) {
-        currentAircraft.refill(ammoStore);
+        ammoStore = currentAircraft.refill(ammoStore);
       }
     }
   
     for (Aircraft currentAircraft : aircraftList) {
       if (currentAircraft.getType().equals("F16")) {
-        currentAircraft.refill(ammoStore);
+        ammoStore = currentAircraft.refill(ammoStore);
       }
     }
   }
@@ -49,7 +49,7 @@ public class Carrier {
       target.health -= currentAircraft.fight();
       if (target.health <= 0) {
         System.out.println("It's dead Jim :(");
-        break;
+        return;
       }
     }
   }
@@ -59,7 +59,7 @@ public class Carrier {
         "Storage: " + ammoStore + ", Total damage: " + countTotalDamage());
     System.out.println("Aircrafts: ");
     for (Aircraft currentAircraft : aircraftList) {
-      currentAircraft.getStatus();
+      System.out.println(currentAircraft.getStatus());
     }
   }
   
