@@ -1,6 +1,8 @@
 package comparable;
 
-public class Thing implements Comparable<Thing> {
+import printable.Printable;
+
+public class Thing implements Comparable<Thing>, Printable {
   private String name;
   private boolean completed;
   
@@ -35,5 +37,10 @@ public class Thing implements Comparable<Thing> {
     */
     
     return toString().compareTo(o.toString());
+  }
+  
+  @Override
+  public void printAllFields() {
+    System.out.println(this);
   }
 }

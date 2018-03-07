@@ -16,7 +16,7 @@ public class Dominoes {
     System.out.println(dominoes);
   }
   
-  private static List<Domino> initializeDominoes() {
+  public static List<Domino> initializeDominoes() {
     List<Domino> dominoes = new ArrayList<>();
     dominoes.add(new Domino(5, 2));
     dominoes.add(new Domino(4, 6));
