@@ -5,11 +5,11 @@ public class Bird extends Animal {
   private int wings;
   
   public Bird(String name) {
-    this.name = name;
+    super(name);
   }
   
   public void flap() {
-    System.out.println(name + " starts flapping its wings.");
+    System.out.println(getName() + " starts flapping its wings.");
   }
   
   @Override

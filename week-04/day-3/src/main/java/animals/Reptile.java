@@ -5,7 +5,7 @@ public class Reptile extends Animal {
   private boolean amphibian;
   
   public Reptile(String name) {
-    this.name = name;
+    super(name);
   }
   
   @Override
