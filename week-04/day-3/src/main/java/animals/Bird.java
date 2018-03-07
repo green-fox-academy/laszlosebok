@@ -1,6 +1,8 @@
 package main.java.animals;
 
-public class Bird extends Animal {
+import flyable.Flyable;
+
+public class Bird extends Animal implements Flyable{
   
   private int wings;
   
@@ -8,12 +10,27 @@ public class Bird extends Animal {
     super(name);
   }
   
-  public void flap() {
+  private void flap() {
     System.out.println(getName() + " starts flapping its wings.");
   }
   
   @Override
   public String breed() {
     return "eggs";
+  }
+  
+  @Override
+  public void fly() {
+    System.out.println("The " + getName() + " is flying.");
+  }
+  
+  @Override
+  public void land() {
+    System.out.println("The " + getName() + " lands on the ground.");
+  }
+  
+  @Override
+  public void takeOff() {
+    flap();
   }
 }
