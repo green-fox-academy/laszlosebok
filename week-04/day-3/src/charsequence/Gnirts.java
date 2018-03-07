@@ -20,7 +20,7 @@ public class Gnirts implements CharSequence{
   
   @Override
   public int length() {
-    return s.length();
+    return reverseString().length();
   }
   
   @Override
@@ -30,6 +30,6 @@ public class Gnirts implements CharSequence{
   
   @Override
   public CharSequence subSequence(int start, int end) {
-    return s.substring(start, end);
+    return reverseString().substring(start, end);
   }
 }
