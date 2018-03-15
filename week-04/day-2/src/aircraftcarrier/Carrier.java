@@ -22,23 +22,26 @@ public class Carrier {
       aircraftList.add(new F35());
     }
   }
-  void fill() {
+  
+  private void checkAmmoAmount() {
     if (ammoStore == 0) {
       System.out.println("There is no ammo on the ship.");
-      return;
     }
-    fillAircrafts();
   }
   
-  private void fillAircrafts (){
-    for (Aircraft currentAircraft : aircraftList) {
-      if (currentAircraft.getType().equals("F35")) {
-        ammoStore = currentAircraft.refill(ammoStore);
-      }
-    }
+  void fill (){
+    final String TYPE_TO_FILL_FIRST = "F35";
+    final String TYPE_TO_FILL_SECOND = "F16";
+    
+    checkAmmoAmount();
+    fillAircraft(TYPE_TO_FILL_FIRST);
+    fillAircraft(TYPE_TO_FILL_SECOND);
+  }
   
+  private void fillAircraft (String aircraftType){
     for (Aircraft currentAircraft : aircraftList) {
-      if (currentAircraft.getType().equals("F16")) {
+      if (currentAircraft.getType().equals(aircraftType)) {
+        if (ammoStore == 0) { break; }
         ammoStore = currentAircraft.refill(ammoStore);
       }
     }
