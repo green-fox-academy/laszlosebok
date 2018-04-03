@@ -5,5 +5,9 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 </head>
 <body>
-<p th:text="'Hello, ' + ${name} + '! This site was loaded 3 times since last server start.'"/>
+<div th:each="greet : ${greetingList}" >
+    <p th:style="'color : ' + ${greet.getColor()} + '; font-size : ' + ${greet.getFontSize()}
+    + 'px'" th:text="${greet.getContent()}"/>
+</div>
 </body>
+</html>
