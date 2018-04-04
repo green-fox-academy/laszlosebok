@@ -12,7 +12,7 @@ public class BankAccount {
   private BankAccount(){
   }
   
-  public BankAccount(String name, int balance, String animalType) {
+  public BankAccount(String name, double balance, String animalType) {
     this();
     this.name = name;
     this.balance = balance;
