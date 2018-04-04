@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add Funds</title>
+    <link rel="stylesheet" th:href="@{/style.css}" />
+    <meta charset="utf-8" />
+</head>
+<body>
+    <form action="#" th:action="@{/funds_added}" th:object="${formResponse}" method="post">
+        <p>How would you like to be contacted?</p>
+        <select th:field="*{name}">
+            <option value=""> --- </option>
+            <option th:each="account : ${accounts}"
+                    th:value="${account.getName()}"
+                    th:text="${account.getName()}" />
+        </select>
+        <input type="submit" value="Submit" />
+    </form>
+</body>
+</html>

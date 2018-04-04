@@ -21,7 +21,7 @@
             <td th:text="${account.getTruncatedBalance()}"></td>
             <td th:text="${account.getAnimalType()}"></td>
             <td th:text="${((account.isKing()) ? 'Yes' : 'No')}"></td>
-            <td th:text="${((account.isGoodGuy()) ? 'Yes' : 'No')}"></td>
+            <td th:text="${((account.getGoodGuy()) ? 'Yes' : 'No')}"></td>
         </tr>
     </table>
 </body>

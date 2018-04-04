@@ -8,13 +8,13 @@ public class BankAccount {
   private String name;
   private double balance;
   private String animalType;
-  private boolean isKing;
-  private boolean isGoodGuy;
+  private Boolean isKing;
+  private Boolean isGoodGuy;
   
-  private BankAccount(){
+  public BankAccount(){
   }
   
-  public BankAccount(String name, double balance, String animalType) {
+  private BankAccount(String name, double balance, String animalType) {
     this();
     this.name = name;
     this.balance = balance;
@@ -23,9 +23,8 @@ public class BankAccount {
   
   public BankAccount(String name, double balance, String animalType, boolean isKing,
                      boolean isGoodGuy) {
-    this(name, balance, animalType);
+    this(name, balance, animalType, isGoodGuy);
     this.isKing = isKing;
-    this.isGoodGuy = isGoodGuy;
   }
   
   public BankAccount(String name, double balance, String animalType, boolean isGoodGuy) {
@@ -33,27 +32,61 @@ public class BankAccount {
     this.isGoodGuy = isGoodGuy;
   }
   
-  public String getName() {
-    return name;
+  public void increaseFund() {
+    if (this.isKing) {
+      balance += 100;
+    } else {
+      balance += 10;
+    }
   }
   
   public String getTruncatedBalance() {
     return String.format("%.02f", balance) + " Z";
   }
   
+  // Getters and Setters
+  
+  public String getName() {
+    return name;
+  }
+  
+  public void setName(String name) {
+    this.name = name;
+  }
+  
   public double getBalance() {
     return balance;
+  }
+  
+  public void setBalance(double balance) {
+    this.balance = balance;
   }
   
   public String getAnimalType() {
     return animalType;
   }
   
-  public boolean isKing() {
+  public void setAnimalType(String animalType) {
+    this.animalType = animalType;
+  }
+  
+  public Boolean getIsKing() {
     return isKing;
   }
   
-  public boolean isGoodGuy() {
+  public Boolean isKing() {
+    return isKing;
+  }
+  
+  public void setIsKing(Boolean king) {
+    isKing = king;
+  }
+  
+  public Boolean getGoodGuy() {
     return isGoodGuy;
+  }
+  
+  public void setGoodGuy(Boolean goodGuy) {
+    isGoodGuy = goodGuy;
   }
 }
