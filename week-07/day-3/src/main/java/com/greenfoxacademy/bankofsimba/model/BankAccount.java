@@ -6,7 +6,7 @@ package com.greenfoxacademy.bankofsimba.model;
 public class BankAccount {
   
   private String name;
-  private int balance;
+  private double balance;
   private String animalType;
   
   private BankAccount(){
@@ -23,8 +23,8 @@ public class BankAccount {
     return name;
   }
   
-  public int getBalance() {
-    return balance;
+  public String getTruncatedBalance() {
+    return String.format("%.02f", balance) + " Z";
   }
   
   public String getAnimalType() {
