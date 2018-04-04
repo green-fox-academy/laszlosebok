@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Text Formatting</title>
+    <link rel="stylesheet" th:href="@{/style.css}" />
+    <meta charset="utf-8" />
+</head>
+<body>
+<div>
+    <p>This is a text:</p>
+    <p th:text="${text}" />
+</div>
+<div>
+    <p>This is a utext:</p>
+    <p th:utext="${text}" />
+</div>
+</body>
+</html>

@@ -19,6 +19,13 @@ public class BankAccountController {
     return "show";
   }
   
+  @GetMapping(value = "/useless_text_formatting")
+  public String textFormatting(Model model) {
+    String text = "This is an <em>HTML</em> text. <b>Enjoy yourself!</b>";
+    model.addAttribute("text", text);
+    return "text_formatting";
+  }
+  
   public List<BankAccount> getAccountList() {
     return new ArrayList<>(Collections.singletonList(
         new BankAccount("Simba", 2000, "lion"))

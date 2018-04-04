@@ -27,6 +27,10 @@ public class BankAccount {
     return String.format("%.02f", balance) + " Z";
   }
   
+  public double getBalance() {
+    return balance;
+  }
+  
   public String getAnimalType() {
     return animalType;
   }
