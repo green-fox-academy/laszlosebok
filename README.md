@@ -4,10 +4,11 @@ GitHub repo for Green Fox Academy lessons
 
 ## Latest repo
 
-* [Wanderer](https://github.com/laszlosebok/wanderer-java)
+* [TODO App (Extended)](https://github.com/laszlosebok/todo-app)
 
 ### Other repositories
 
+* [Wanderer](https://github.com/laszlosebok/wanderer-java)
 * [TODO App](https://github.com/laszlosebok/todo-app)
 * [Trial Exam Repo(Private)](https://github.com/laszlosebok/exam-trial-basics)
 * [https://laszlosebok.github.io](https://laszlosebok.github.io)
