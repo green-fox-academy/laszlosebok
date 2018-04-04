@@ -6,16 +6,22 @@
     <meta charset="utf-8" />
 </head>
 <body>
-    <table border="1" style="width: 50%" >
+    <table border="1">
         <tr>
+            <th>Account Index</th>
             <th>Name</th>
             <th>Balance</th>
             <th>Type</th>
+            <th>King</th>
+            <th>Good Guy</th>
         </tr>
         <tr th:each="account : ${accounts}">
-            <td th:text="'' + ${account.getName()}"></td>
-            <td th:text="'' + ${account.getTruncatedBalance()}"></td>
-            <td th:text="'' + ${account.getAnimalType()}"></td>
+            <td th:text="${accountStat.index}"></td>
+            <td th:text="${account.getName()}"></td>
+            <td th:text="${account.getTruncatedBalance()}"></td>
+            <td th:text="${account.getAnimalType()}"></td>
+            <td th:text="${((account.isKing()) ? 'Yes' : 'No')}"></td>
+            <td th:text="${((account.isGoodGuy()) ? 'Yes' : 'No')}"></td>
         </tr>
     </table>
 </body>

@@ -44,12 +44,12 @@ public class BankAccountController {
   private List<BankAccount> getAccountList() {
     List<BankAccount> accounts = new ArrayList<>();
     
-    accounts.add(new BankAccount("Scar", 193, "lion"));
-    accounts.add(new BankAccount("Simba", 2000, "lion"));
-    accounts.add(new BankAccount("Pumba", 25.3, "boar"));
-    accounts.add(new BankAccount("Rafiki", 125, "monkey"));
-    accounts.add(new BankAccount("Zazu", 259.32332, "parrot"));
-        
+    accounts.add(new BankAccount("Scar", 193, "lion", false));
+    accounts.add(new BankAccount("Simba", 2000, "lion", true, true));
+    accounts.add(new BankAccount("Pumba", 25.3, "boar", true));
+    accounts.add(new BankAccount("Rafiki", 125, "monkey", true));
+    accounts.add(new BankAccount("Zazu", 259.32332, "parrot", true));
+    
     return accounts;
   }
 }
