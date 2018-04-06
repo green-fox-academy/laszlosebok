@@ -1,5 +1,7 @@
 package com.greenfoxacademy.programmerfoxclub.models;
 
+import java.util.List;
+
 public class Fox {
   
   private String name;
