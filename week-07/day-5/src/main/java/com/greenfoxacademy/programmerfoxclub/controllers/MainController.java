@@ -19,8 +19,7 @@ public class MainController {
   }
   
   @PostMapping("/login")
-  public String login(@ModelAttribute(value = "petname") String name) {
-    System.out.println(name);
-    return "redirect:/";
+  public String login(@ModelAttribute(name = "petname") String name) {
+    return "redirect:/?name=" + name;
   }
 }
