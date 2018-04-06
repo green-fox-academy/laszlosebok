@@ -7,4 +7,9 @@ public class Trick {
   public Trick() {
   }
   
+  public Trick(String description){
+    this();
+    this.description = description;
+  }
+  
 }

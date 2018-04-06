@@ -1,5 +1,6 @@
 package com.greenfoxacademy.programmerfoxclub.services;
 
+import com.greenfoxacademy.programmerfoxclub.models.Fox;
 import com.greenfoxacademy.programmerfoxclub.repositories.FoxRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,4 +24,10 @@ public class LoginServiceImpl implements LoginService {
       return true;
     }
   }
+  
+  @Override
+  public Fox getFox(String name) {
+    return foxRepository.find(name);
+  }
+  
 }

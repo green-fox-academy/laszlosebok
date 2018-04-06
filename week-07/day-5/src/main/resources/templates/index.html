@@ -11,11 +11,14 @@
         </ul>
     </nav>
     <img th:src="@{greenfox.png}" alt="A fox" />
-    <p>This is Mr. Fox. Currently living on pizza and lemonade. He knows 2 tricks.</p>
+    <p th:text="'This is ' + ${fox.getName()} +'. ' +
+            'Currently living on ' + ${fox.getFood()} +' and ' + ${fox.getDrink()} +'. ' +
+            'He knows ' + ${fox.getTricks().size()} +' tricks.'"></p>
     <h1>Known Tricks</h1>
+    <p th:text="(${fox.getTricks().size() == 0} ? 'Knows no trick')"></p>
     <ul>
-        <li>write HTML</li>
-        <li>code in Java</li>
+        <li th:each="trick : ${fox.getTricks()}" th:text="${trick}"></li>
+
     </ul>
 </body>
 </html>
