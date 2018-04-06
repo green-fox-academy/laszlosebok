@@ -20,5 +20,6 @@ public class LoginServiceImpl implements LoginService {
   @Override
   public boolean addFox(String name) {
     foxRepository.add(name);
+    return false;
   }
 }

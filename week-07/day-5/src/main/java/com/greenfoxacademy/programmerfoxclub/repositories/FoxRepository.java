@@ -8,10 +8,10 @@ import java.util.List;
 @Component
 public interface FoxRepository {
   
-  boolean add(String name);
-  boolean update();
-  boolean delete();
+  void add(String name);
+  void update(Fox fox);
+  void delete(String name);
   List<Fox> findAll();
-  Fox find();
+  Fox find(String name);
   
 }
