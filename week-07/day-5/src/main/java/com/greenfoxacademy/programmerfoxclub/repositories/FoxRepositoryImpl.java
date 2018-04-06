@@ -26,11 +26,19 @@ public class FoxRepositoryImpl implements FoxRepository {
   
   @Override
   public void update(Fox fox) {
+    /*
+     * Update is not used with lists.
+     * Passing the Object reference and modifying it
+     * Modifies the Object in the list.
+     * So update is not required.
+     
+
     List<Fox> foxes = FoxDB.getFoxes();
     foxes
         .stream()
         .filter(o -> o == fox)
-        .forEach(o -> o = fox);
+        .forEach(o -> o = fox);   
+     */
   }
   
   @Override
