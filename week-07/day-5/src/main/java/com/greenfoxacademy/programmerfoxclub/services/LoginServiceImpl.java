@@ -1,11 +1,8 @@
 package com.greenfoxacademy.programmerfoxclub.services;
 
-import com.greenfoxacademy.programmerfoxclub.models.Fox;
 import com.greenfoxacademy.programmerfoxclub.repositories.FoxRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 public class LoginServiceImpl implements LoginService {
@@ -19,7 +16,11 @@ public class LoginServiceImpl implements LoginService {
   
   @Override
   public boolean addFox(String name) {
-    foxRepository.add(name);
-    return false;
+    if (foxRepository.find(name) != null) {
+      return false;
+    } else {
+      foxRepository.add(name);
+      return true;
+    }
   }
 }
