@@ -5,5 +5,5 @@ import org.springframework.stereotype.Service;
 @Service
 public interface LoginService {
 
-  boolean addFox();
+  boolean addFox(String name);
 }
