@@ -30,6 +30,11 @@ public class Todo {
     this.urgent = urgent;
   }
   
+  @Override
+  public String toString() {
+    return title;
+  }
+  
   // Getters & Setters
   public long getId() {
     return id;
