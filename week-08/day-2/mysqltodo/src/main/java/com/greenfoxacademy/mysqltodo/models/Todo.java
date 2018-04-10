@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.time.LocalDateTime;
 
 @Entity
 public class Todo {
@@ -16,8 +17,10 @@ public class Todo {
   private String title;
   private boolean urgent;
   private boolean done;
+  private LocalDateTime createdAt;
   
   public Todo(){
+    createdAt = LocalDateTime.now();
   }
   
   public Todo(String title){
@@ -71,5 +74,13 @@ public class Todo {
   
   public void setDone(boolean done) {
     this.done = done;
+  }
+  
+  public LocalDateTime getCreatedAt() {
+    return createdAt;
+  }
+  
+  public void setCreatedAt(LocalDateTime createdAt) {
+    this.createdAt = createdAt;
   }
 }

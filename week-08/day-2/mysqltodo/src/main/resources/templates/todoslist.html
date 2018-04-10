@@ -16,12 +16,14 @@
                 <th>ACTION</th>
                 <th>DONE</th>
                 <th>URGENT</th>
+                <th>CREATION DATE</th>
             </tr>
             <tr th:each="todo : ${todos}">
                 <td th:text="${todo.id}"></td>
                 <td><a th:href="${todo.id} + '/'" th:text="${todo.title}"></a></td>
                 <td th:text="${todo.done}"></td>
                 <td th:text="${todo.urgent}"></td>
+                <td th:text="${todo.createdAt}"></td>
                 <td><a th:href="${todo.id} + '/delete'">delete</a></td>
                 <td><a th:href="${todo.id} + '/edit'">edit</a></td>
             </tr>

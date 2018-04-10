@@ -11,6 +11,7 @@
     <div>
         <ul>
             <li><p th:text="'ID: ' + *{id}" /></li>
+            <li><p th:text="'Creation date: ' + *{createdAt}" /></li>
             <li><p th:text="'Description: ' + *{title}" /></li>
             <li><p th:text="((*{urgent}) ? 'Urgent' : 'Not urgent')" /></li>
             <li><p th:text="((*{done}) ? 'Completed' : 'Not completed')" /></li>
