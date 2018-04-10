@@ -8,6 +8,7 @@ public interface TodoService {
   
   List<Todo> getTodos();
   List<Todo> getActiveTodos();
-  boolean addTodo(Todo todo);
+  void saveTodo(Todo todo);
   boolean deleteTodo(String id);
+  Todo getTodoById(String id);
 }

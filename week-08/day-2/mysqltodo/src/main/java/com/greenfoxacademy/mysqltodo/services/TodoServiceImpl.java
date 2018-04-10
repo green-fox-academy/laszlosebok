@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class TodoServiceImpl implements TodoService{
+public class TodoServiceImpl implements TodoService {
   
   private TodoRepository todoRepository;
   
@@ -40,19 +40,28 @@ public class TodoServiceImpl implements TodoService{
   }
   
   @Override
-  public boolean addTodo(Todo todo) {
+  public void saveTodo(Todo todo) {
     todoRepository.save(todo);
-    return true;
   }
   
   @Override
   public boolean deleteTodo(String idString) {
-    try{
+    try {
       long id = Long.parseLong(idString);
       todoRepository.deleteById(id);
       return true;
     } catch (NumberFormatException e) {
       return false;
+    }
+  }
+  
+  @Override
+  public Todo getTodoById(String idString) {
+    try {
+      long id = Long.parseLong(idString);
+      return todoRepository.findById(id).orElse(null);
+    } catch (NumberFormatException e) {
+      return null;
     }
   }
 }

@@ -20,7 +20,12 @@ public class TodoController {
     this.todoService = todoService;
   }
   
-  @RequestMapping(value ={"", "/list"})
+  @GetMapping("")
+  public String redirectTodo() {
+    return "redirect:/todo/";
+  }
+  
+  @RequestMapping(value ={"/", "/list"})
   public String list(@RequestParam(name = "isActive", required = false) String isActive, Model
       model) {
     List<Todo> todos;
@@ -42,14 +47,30 @@ public class TodoController {
   
   @PostMapping("add")
   public String add(@ModelAttribute("todo") Todo todo) {
-    todoService.addTodo(todo);
+    todoService.saveTodo(todo);
     
     return "redirect:/todo";
   }
   
   @GetMapping("{id}/delete")
-  public String delete(@PathVariable("id") String id){
+  public String delete(@PathVariable("id") String id) {
     todoService.deleteTodo(id);
+    return "redirect:/todo";
+  }
+  
+  @GetMapping("{id}/edit")
+  public String showEdit(@PathVariable("id") String id, Model model) {
+    Todo todo = todoService.getTodoById(id);
+    if (todo == null) {
+      return "redirect:/todo";
+    }
+    model.addAttribute("todo", todo);
+    return "edittodo";
+  }
+  
+  @PostMapping("{id}/edit")
+  public String edit(@PathVariable("id") String id, @ModelAttribute("todo") Todo todo) {
+    todoService.saveTodo(todo);
     return "redirect:/todo";
   }
 }
