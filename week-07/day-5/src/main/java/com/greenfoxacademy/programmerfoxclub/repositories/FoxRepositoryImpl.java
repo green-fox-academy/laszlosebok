@@ -37,7 +37,7 @@ public class FoxRepositoryImpl implements FoxRepository {
     foxes
         .stream()
         .filter(o -> o == fox)
-        .forEach(o -> o = fox);   
+        .forEach(o -> o = fox);
      */
   }
   
