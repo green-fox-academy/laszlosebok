@@ -6,9 +6,9 @@
     <meta charset="utf-8" />
 </head>
 <body>
-    <form action="#" th:action="@{/funds_added}" th:object="${formResponse}" method="post">
-        <p>How would you like to be contacted?</p>
-        <select th:field="*{name}">
+    <form action="#" th:action="@{/funds_added}" method="post">
+        <p>Account to add funds to:</p>
+        <select name="AccountName">
             <option value=""> --- </option>
             <option th:each="account : ${accounts}"
                     th:value="${account.getName()}"

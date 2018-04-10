@@ -8,8 +8,8 @@ public class BankAccount {
   private String name;
   private double balance;
   private String animalType;
-  private Boolean isKing;
-  private Boolean isGoodGuy;
+  private boolean isKing;
+  private boolean GoodGuy;
   
   public BankAccount(){
   }
@@ -19,18 +19,17 @@ public class BankAccount {
     this.name = name;
     this.balance = balance;
     this.animalType = animalType;
-    this.isKing = false;
   }
   
   public BankAccount(String name, double balance, String animalType, boolean isKing,
-                     boolean isGoodGuy) {
-    this(name, balance, animalType, isGoodGuy);
+                     boolean GoodGuy) {
+    this(name, balance, animalType, GoodGuy);
     this.isKing = isKing;
   }
   
-  public BankAccount(String name, double balance, String animalType, boolean isGoodGuy) {
+  public BankAccount(String name, double balance, String animalType, boolean GoodGuy) {
     this(name, balance, animalType);
-    this.isGoodGuy = isGoodGuy;
+    this.GoodGuy = GoodGuy;
   }
   
   public void increaseFund() {
@@ -71,23 +70,23 @@ public class BankAccount {
     this.animalType = animalType;
   }
   
-  public Boolean getIsKing() {
+  public boolean getIsKing() {
     return isKing;
   }
   
-  public Boolean isKing() {
+  public boolean isKing() {
     return isKing;
   }
   
-  public void setIsKing(Boolean king) {
+  public void setIsKing(boolean king) {
     isKing = king;
   }
   
-  public Boolean getGoodGuy() {
-    return isGoodGuy;
+  public boolean getGoodGuy() {
+    return GoodGuy;
   }
   
-  public void setGoodGuy(Boolean goodGuy) {
-    isGoodGuy = goodGuy;
+  public void setGoodGuy(boolean goodGuy) {
+    GoodGuy = goodGuy;
   }
 }

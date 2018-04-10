@@ -1,7 +1,6 @@
 package com.greenfoxacademy.bankofsimba.controller;
 
 import com.greenfoxacademy.bankofsimba.model.BankAccount;
-import com.greenfoxacademy.bankofsimba.model.FormResponse;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,7 +11,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Controller
 public class BankAccountController {
@@ -48,20 +46,18 @@ public class BankAccountController {
   }
   
   @PostMapping(value = "funds_added")
-  public String addFundsToAccount(@ModelAttribute FormResponse formResponse, Model model) {
-    String response = formResponse.getName();
+  public String addFundsToAccount(@ModelAttribute(name = "AccountName") String name, Model model) {
     accountList
         .stream()
-        .filter(o -> o.getName().equalsIgnoreCase(response))
+        .filter(o -> o.getName().equalsIgnoreCase(name))
         .forEach(BankAccount::increaseFund);
   
-    model.addAttribute("name", response);
+    model.addAttribute("name", name);
     return "funds_changed";
   }
   
   @GetMapping(value = "/add_funds")
   public String addFunds(Model model) {
-    model.addAttribute("formResponse", new FormResponse());
     model.addAttribute("accounts", accountList);
     return "increase_funds";
   }
