@@ -8,8 +8,6 @@ import java.time.LocalDateTime;
 
 @Entity
 public class Todo {
-
-  // Add a Todo class with the fields(id:Long, title:String, urgent:boolean(default false), done:boolean(default false))
   
   @GeneratedValue(strategy = GenerationType.AUTO)
   @Id

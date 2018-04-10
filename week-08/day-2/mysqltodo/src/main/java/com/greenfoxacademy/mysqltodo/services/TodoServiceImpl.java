@@ -31,12 +31,10 @@ public class TodoServiceImpl implements TodoService {
   
   @Override
   public List<Todo> getActiveTodos() {
-    List<Todo> todos = getTodos()
+    return getTodos()
         .stream()
         .filter(t -> !t.isDone())
         .collect(Collectors.toList());
-    
-    return todos;
   }
   
   @Override
