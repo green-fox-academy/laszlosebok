@@ -30,6 +30,11 @@ public class Todo {
     this.urgent = urgent;
   }
   
+  public Todo(String title, boolean urgent, boolean done) {
+    this(title, urgent);
+    this.done = done;
+  }
+  
   @Override
   public String toString() {
     return title;
