@@ -44,4 +44,15 @@ public class TodoServiceImpl implements TodoService{
     todoRepository.save(todo);
     return true;
   }
+  
+  @Override
+  public boolean deleteTodo(String idString) {
+    try{
+      long id = Long.parseLong(idString);
+      todoRepository.deleteById(id);
+      return true;
+    } catch (NumberFormatException e) {
+      return false;
+    }
+  }
 }
