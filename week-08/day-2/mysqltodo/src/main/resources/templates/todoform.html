@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Add new Todo</title>
+</head>
+<body>
+    <div>
+        <form action="#" th:action="@{add}" th:object="${todo}" method="post">
+            <p>
+                <input type="checkbox" name="urgent" th:checked="*{urgent}" /> Urgent
+                <input type="checkbox" name="done" th:checked="*{done}" /> Done
+            </p>
+            <p>
+                Title: <input type="text" placeholder="title" name="title" required/>
+            </p>
+            <input type="submit" value="Add Todo">
+        </form>
+    </div>
+</body>
+</html>

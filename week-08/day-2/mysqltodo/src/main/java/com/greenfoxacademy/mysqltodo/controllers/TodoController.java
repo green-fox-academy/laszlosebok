@@ -1,26 +1,23 @@
 package com.greenfoxacademy.mysqltodo.controllers;
 
 import com.greenfoxacademy.mysqltodo.models.Todo;
-import com.greenfoxacademy.mysqltodo.services.TodoServiceImpl;
+import com.greenfoxacademy.mysqltodo.services.TodoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
 @RequestMapping("/todo")
 public class TodoController {
   
-  private TodoServiceImpl todoServiceImpl;
+  private TodoService todoService;
   
   @Autowired
-  public TodoController(TodoServiceImpl todoServiceImpl) {
-    this.todoServiceImpl = todoServiceImpl;
+  public TodoController(TodoService todoService) {
+    this.todoService = todoService;
   }
   
   @RequestMapping(value ={"", "/list"})
@@ -28,9 +25,9 @@ public class TodoController {
       model) {
     List<Todo> todos;
     if (Boolean.parseBoolean(isActive)) {
-      todos = todoServiceImpl.getActiveTodos();
+      todos = todoService.getActiveTodos();
     } else {
-      todos = todoServiceImpl.getTodos();
+      todos = todoService.getTodos();
     }
     
     model.addAttribute("todos", todos);
@@ -41,5 +38,12 @@ public class TodoController {
   public String showAdd(Model model){
     model.addAttribute("todo", new Todo());
     return "todoform";
+  }
+  
+  @PostMapping("add")
+  public String add(@ModelAttribute("todo") Todo todo) {
+    todoService.addTodo(todo);
+    
+    return "redirect:/todo";
   }
 }

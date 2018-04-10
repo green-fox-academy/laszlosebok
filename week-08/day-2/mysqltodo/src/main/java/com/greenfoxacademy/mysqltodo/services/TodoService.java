@@ -8,4 +8,5 @@ public interface TodoService {
   
   List<Todo> getTodos();
   List<Todo> getActiveTodos();
+  boolean addTodo(Todo todo);
 }

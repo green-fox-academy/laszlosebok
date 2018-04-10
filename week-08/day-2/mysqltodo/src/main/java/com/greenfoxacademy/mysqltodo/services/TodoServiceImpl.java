@@ -38,4 +38,10 @@ public class TodoServiceImpl implements TodoService{
     
     return todos;
   }
+  
+  @Override
+  public boolean addTodo(Todo todo) {
+    todoRepository.save(todo);
+    return true;
+  }
 }
