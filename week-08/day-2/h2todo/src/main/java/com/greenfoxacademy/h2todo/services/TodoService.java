@@ -1,16 +1,10 @@
 package com.greenfoxacademy.h2todo.services;
 
-import com.greenfoxacademy.h2todo.respositories.TodoRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import com.greenfoxacademy.h2todo.models.Todo;
 
-@Service
-public class TodoService {
+import java.util.List;
+
+public interface TodoService {
   
-  private TodoRepository todoRepository;
-  
-  @Autowired
-  public TodoService(TodoRepository todoRepository) {
-    this.todoRepository = todoRepository;
-  }
+  List<Todo> getTodoList();
 }
