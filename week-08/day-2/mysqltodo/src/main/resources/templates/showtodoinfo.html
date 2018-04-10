@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Todo Info</title>
+</head>
+<body th:object="${todo}">
+    <div>
+        <h1>Todo Information</h1>
+    </div>
+    <div>
+        <ul>
+            <li><p th:text="'ID: ' + *{id}" /></li>
+            <li><p th:text="'Description: ' + *{title}" /></li>
+            <li><p th:text="((*{urgent}) ? 'Urgent' : 'Not urgent')" /></li>
+            <li><p th:text="((*{done}) ? 'Completed' : 'Not completed')" /></li>
+        </ul>
+    </div>
+    <div>
+        <a href="/todo/">Go back</a>
+    </div>
+</body>
+</html>
