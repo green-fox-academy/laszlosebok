@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -21,8 +23,14 @@ public class TodoController {
   }
   
   @RequestMapping(value ={"", "/list"})
-  public String list(Model model) {
-    List<Todo> todos = todoServiceImpl.getTodoList();
+  public String list(@RequestParam(name = "isActive", required = false) String isActive, Model
+      model) {
+    List<Todo> todos;
+    if (Boolean.parseBoolean(isActive)) {
+      todos = todoServiceImpl.getActiveTodos();
+    } else {
+      todos = todoServiceImpl.getTodos();
+    }
     
     model.addAttribute("todos", todos);
     return "todoslist";

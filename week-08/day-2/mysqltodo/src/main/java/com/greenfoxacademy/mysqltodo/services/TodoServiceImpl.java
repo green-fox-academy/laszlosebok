@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class TodoServiceImpl implements TodoService{
@@ -19,11 +20,21 @@ public class TodoServiceImpl implements TodoService{
   }
   
   @Override
-  public List<Todo> getTodoList() {
+  public List<Todo> getTodos() {
     List<Todo> todos = new ArrayList<>();
     todoRepository
         .findAll()
         .forEach(todos::add);
+    
+    return todos;
+  }
+  
+  @Override
+  public List<Todo> getActiveTodos() {
+    List<Todo> todos = getTodos()
+        .stream()
+        .filter(t -> !t.isDone())
+        .collect(Collectors.toList());
     
     return todos;
   }
