@@ -3,22 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <title>Todo Info</title>
+    <link href="/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css" rel="stylesheet"/>
+    <link th:href="@{/style.css}" rel="stylesheet"/>
 </head>
 <body th:object="${todo}">
     <div>
-        <h1>Todo Information</h1>
+        <h1 class="main-header">Todo Information</h1>
     </div>
-    <div>
-        <ul>
-            <li><p th:text="'ID: ' + *{id}" /></li>
-            <li><p th:text="'Creation date: ' + *{createdAt}" /></li>
-            <li><p th:text="'Description: ' + *{title}" /></li>
-            <li><p th:text="((*{urgent}) ? 'Urgent' : 'Not urgent')" /></li>
-            <li><p th:text="((*{done}) ? 'Completed' : 'Not completed')" /></li>
-        </ul>
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title" th:text="*{title}"></h5>
+                </div>
+                <div class="card-body">
+                    <div class="card-text">
+                        <ul>
+                            <li th:text="'ID: ' + *{id}"></li>
+                            <li th:text="'Creation date: ' + *{createdAt}"></li>
+                            <li th:text="((*{urgent}) ? 'Urgent' : 'Not urgent')"></li>
+                            <li th:text="((*{done}) ? 'Completed' : 'Not completed')"></li>
+                        </ul>
+                    </div>
+                </div>
+                <a class="centered bottompad" href="/todo/">
+                    <button class="btn btn-danger">Go back</button>
+                </a>
+            </div>
+        </div>
+        <div class="col-md-4"></div>
     </div>
-    <div>
-        <a href="/todo/">Go back</a>
-    </div>
+    <script src="/webjars/jquery/3.0.0/jquery.min.js"></script>
+    <script src="/webjars/bootstrap/4.0.0-2/js/bootstrap.min.js"></script>
 </body>
 </html>

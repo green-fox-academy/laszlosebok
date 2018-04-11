@@ -1,20 +1,38 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8" />
-    <title>Edit Todo</title>
-</head>
-<body>
-    <div>
-        <h1>Edit Todo</h1>
-    </div>
-    <div>
-        <form action="#" th:action="@{edit}" th:object="${todo}" method="post">
-            <p>Todo Description: <input type="text" th:value="*{title}" name="title" required /></p>
-            <p>Urgent: <input type="checkbox" name="urgent" th:checked="*{urgent}"></p>
-            <p>Done: <input type="checkbox" name="done" th:checked="*{done}"></p>
-            <input type="submit" value="Sumbit"><a href="/todo/">Cancel</a>
-        </form>
-    </div>
-</body>
+    <head>
+        <meta charset="UTF-8" />
+        <title>Edit Todo</title>
+        <link href="/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css" rel="stylesheet"/>
+        <link th:href="@{/style.css}" rel="stylesheet"/>
+    </head>
+    <body>
+        <div>
+            <h1 class="main-header">Edit Todo</h1>
+        </div>
+        <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-4 custom-form">
+                <form action="#" th:action="@{edit}" th:object="${todo}" method="post">
+                    <div class="form-group">
+                        <label for="urgent">Urgent: </label>
+                        <input type="checkbox" id="urgent"  name="urgent" th:checked="*{urgent}" />
+                        <label for="done">Done: </label>
+                        <input type="checkbox" id="done" name="done" th:checked="*{done}" />
+                    </div>
+                    <div class="form-group">
+                        <label for="title">Title:</label>
+                        <input type="text" id="title" class="form-control" th:value="*{title}"
+                               name="title"
+                               required />
+                    </div>
+                    <button type="submit" class="btn btn-success">Submit</button>
+                    <a href="/todo/"><button class="btn btn-danger">Cancel</button></a>
+                </form>
+            </div>
+            <div class="col-md-4"></div>
+        </div>
+        <script src="/webjars/jquery/3.0.0/jquery.min.js"></script>
+        <script src="/webjars/bootstrap/4.0.0-2/js/bootstrap.min.js"></script>
+    </body>
 </html>

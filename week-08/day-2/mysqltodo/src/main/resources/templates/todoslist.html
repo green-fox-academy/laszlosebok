@@ -1,33 +1,63 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8" />
     <title>Todo List</title>
+    <link href="/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css" rel="stylesheet"/>
+    <link th:href="@{/style.css}" rel="stylesheet"/>
+    <meta charset="UTF-8" />
 </head>
-<body>
+<div>
     <div>
-        <h1>TODOS FOR TODAY:</h1>
-        <a href="/todo/add">Add new todo</a>
+        <h1 class="main-header">TODOS FOR TODAY:</h1>
     </div>
-    <div>
-        <table border="1">
-            <tr>
-                <th>ID</th>
-                <th>ACTION</th>
-                <th>DONE</th>
-                <th>URGENT</th>
-                <th>CREATION DATE</th>
-            </tr>
-            <tr th:each="todo : ${todos}">
-                <td th:text="${todo.id}"></td>
-                <td><a th:href="${todo.id} + '/'" th:text="${todo.title}"></a></td>
-                <td th:text="${todo.done}"></td>
-                <td th:text="${todo.urgent}"></td>
-                <td th:text="${todo.createdAt}"></td>
-                <td><a th:href="${todo.id} + '/delete'">delete</a></td>
-                <td><a th:href="${todo.id} + '/edit'">edit</a></td>
-            </tr>
-        </table>
+    <nav class="buttons">
+        <a href="/todo/add">
+            <button type="button" class="btn btn-md btn-warning">Add new todo</button>
+        </a>
+    </nav>
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>ACTION</th>
+                        <th class="centered">DONE</th>
+                        <th class="centered">URGENT</th>
+                        <th class="centered">CREATION DATE</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="todo : ${todos}">
+                        <td th:text="${todo.id}"></td>
+                        <td><a th:href="${todo.id} + '/'" th:text="${todo.title}"></a></td>
+                        <td th:class="(${todo.done} ? 'checkmark' : 'xmark')"
+                            th:text="(${todo.done} ? '✔' : '✖')"></td>
+                        <td th:class="(${todo.urgent} ? 'exclam' : 'xmark')"
+                            th:text="(${todo.urgent} ? '⚠' : '')"></td>
+                        <td class="centered" th:text="${todo.createdAt}"></td>
+                        <td class="centered">
+                            <a th:href="${todo.id} + '/delete'">
+                                <button type="button" class="btn btn-sm btn-danger">
+                                    Delete
+                                </button>
+                            </a>
+                        </td>
+                        <td class="centered">
+                            <a th:href="${todo.id} + '/edit'">
+                                <button type="button" class="btn btn-sm btn-primary">
+                                    Edit
+                                </button>
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-md-2"></div>
     </div>
+    <script src="/webjars/jquery/3.0.0/jquery.min.js"></script>
+    <script src="/webjars/bootstrap/4.0.0-2/js/bootstrap.min.js"></script>
 </body>
 </html>
