@@ -25,19 +25,28 @@ public class TodoController {
     return "redirect:/todo/";
   }
   
-  @RequestMapping(value ={"/", "/list"})
-  public String list(@RequestParam(name = "isActive", required = false) String isActive,
+  @RequestMapping(value ={"/", "/list"}, method = RequestMethod.GET)
+  public String showAllTodos(@RequestParam(name = "isActive", required = false) String isActive,
                      Model model) {
     List<Todo> todos;
     if (Boolean.parseBoolean(isActive)) {
-      todos = todoService.getActiveTodos();
+      todos = todoService.findActiveTodos();
     } else {
-      todos = todoService.getTodos();
+      todos = todoService.findTodos();
     }
     
     model.addAttribute("todos", todos);
     return "todoslist";
   }
+  
+  @RequestMapping(value ={"/", "/list"}, method = RequestMethod.POST)
+  public String showTodosWithArgs(@ModelAttribute("args") String userInput, Model model) {
+    List<Todo> todos;
+    todos = todoService.findListFromUserInput(userInput);
+    model.addAttribute("todos", todos);
+    return "todoslist";
+  }
+  
   
   @GetMapping("add")
   public String showAdd(Model model){
@@ -60,7 +69,7 @@ public class TodoController {
   
   @GetMapping("{id}/edit")
   public String showEdit(@PathVariable("id") String id, Model model) {
-    Todo todo = todoService.getTodoById(id);
+    Todo todo = todoService.findTodoById(id);
     if (todo == null) {
       return "redirect:/todo";
     }
@@ -76,7 +85,7 @@ public class TodoController {
   
   @GetMapping("{id}/")
   public String showInfo(@PathVariable("id") String id, Model model) {
-    Todo todo = todoService.getTodoById(id);
+    Todo todo = todoService.findTodoById(id);
     model.addAttribute("todo", todo);
     return "showtodoinfo";
   }

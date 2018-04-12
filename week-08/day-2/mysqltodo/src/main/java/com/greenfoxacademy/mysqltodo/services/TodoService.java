@@ -6,9 +6,10 @@ import java.util.List;
 
 public interface TodoService {
   
-  List<Todo> getTodos();
-  List<Todo> getActiveTodos();
+  List<Todo> findTodos();
+  List<Todo> findActiveTodos();
+  Todo findTodoById(String id);
   void saveTodo(Todo todo);
-  boolean deleteTodo(String id);
-  Todo getTodoById(String id);
+  void deleteTodo(String id);
+  List<Todo> findListFromUserInput(String userInput);
 }

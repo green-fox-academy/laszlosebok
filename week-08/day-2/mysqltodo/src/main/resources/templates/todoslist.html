@@ -6,15 +6,29 @@
     <link th:href="@{/style.css}" rel="stylesheet"/>
     <meta charset="UTF-8" />
 </head>
-<div>
+<body>
     <div>
         <h1 class="main-header">TODOS FOR TODAY:</h1>
     </div>
-    <nav class="buttons">
-        <a href="/todo/add">
-            <button type="button" class="btn btn-md btn-warning">Add new todo</button>
-        </a>
-    </nav>
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-4">
+            <form action="#" th:action="@{/todo/}" method="post">
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="Seach..."
+                       name="args" aria-describedby="addon">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" type="submit">Go</button>
+                </div>
+            </div>
+            </form>
+        </div>
+        <div class="col-md-4">
+            <a href="/todo/add">
+                <button type="button" class="btn btn-md btn-warning">Add new todo</button>
+            </a>
+        </div>
+    </div>
     <div class="row">
         <div class="col-md-2"></div>
         <div class="col-md-8">
