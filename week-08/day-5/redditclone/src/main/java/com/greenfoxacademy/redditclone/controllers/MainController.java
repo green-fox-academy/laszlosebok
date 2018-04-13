@@ -21,7 +21,7 @@ public class MainController {
   
   @GetMapping("/")
   public String showMainPage(Model model) {
-    List<Post> posts = mainService.findAllPosts();
+    List<Post> posts = mainService.findAllPostsOrderedByScore();
     model.addAttribute("posts", posts);
     return "index";
   }
