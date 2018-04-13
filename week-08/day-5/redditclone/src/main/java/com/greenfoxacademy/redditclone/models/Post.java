@@ -19,6 +19,7 @@ public class Post {
   private String title;
   private LocalDateTime createdAt;
   //private UserModel createdBy; TODO - implement UserModels
+  private String url;
   
   
   @Override
@@ -57,5 +58,13 @@ public class Post {
   
   public void setCreatedAt(LocalDateTime createdAt) {
     this.createdAt = createdAt;
+  }
+  
+  public String getUrl() {
+    return url;
+  }
+  
+  public void setUrl(String url) {
+    this.url = url;
   }
 }
