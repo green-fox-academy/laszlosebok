@@ -6,7 +6,10 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public interface MainService {
+public class MainServiceImpl implements MainService {
   
-  List<Post> findAllPosts();
+  @Override
+  public List<Post> findAllPosts() {
+    return null;
+  }
 }
