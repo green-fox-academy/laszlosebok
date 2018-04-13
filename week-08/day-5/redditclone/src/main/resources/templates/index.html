@@ -4,16 +4,17 @@
     <meta charset="UTF-8" />
     <title>Reddit Clone</title>
     <link href="/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css" rel="stylesheet" />
+    <link th:href="@{/style.css}" rel="stylesheet">
 </head>
 <body>
     <div class="header">
         <h1>Trending Posts</h1>
     </div>
     <div class="post-container">
-        <div class="row" th:each="post : ${posts}">
+        <div class="row">
             <div class="col-md-2"></div>
             <div class="col-md-6">
-                <div class="row">
+                <div class="row" th:each="post : ${posts}">
                     <div class="col-md-1" th:text="${post.score}"></div>
                     <div class="col-md-1">
                         <span>+</span>
@@ -22,7 +23,9 @@
                     <div class="col-md-10" th:text="${post.title}"></div>
                 </div>
             </div>
-            <div class="col-md-3"></div>
+            <div class="col-md-3">
+                <a th:href="@{/add}"><button type="button" class="btn">Submit Post</button></a>
+            </div>
             <div class="col-md-2"></div>
         </div>
     </div>
