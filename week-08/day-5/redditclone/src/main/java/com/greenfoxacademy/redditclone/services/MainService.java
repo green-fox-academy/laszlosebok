@@ -9,4 +9,5 @@ import java.util.List;
 public interface MainService {
   
   List<Post> findAllPostsOrderedByScore();
+  void changePostScore(String stringId, int difference);
 }

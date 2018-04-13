@@ -22,6 +22,10 @@ public class Post {
   private String url;
   
   
+  public void changeScore(int diff) {
+    score += diff;
+  }
+  
   @Override
   public String toString() {
     return id + " " + score + " " + title;

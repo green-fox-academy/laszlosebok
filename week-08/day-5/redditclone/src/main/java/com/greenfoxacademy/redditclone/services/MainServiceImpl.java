@@ -21,4 +21,25 @@ public class MainServiceImpl implements MainService {
   public List<Post> findAllPostsOrderedByScore() {
     return postRepository.findAllByOrderByScoreDesc();
   }
+  
+  @Override
+  public void changePostScore(String s, int difference) {
+    long id = idValidation(s);
+    Post post = postRepository.findById(id).orElse(null);
+    if (post != null) {
+      post.changeScore(difference);
+      postRepository.save(post);
+    }
+  }
+  
+  private long idValidation(String s) {
+    try {
+      if (s != null) {
+        return Long.parseLong(s);
+      }
+    } catch (NumberFormatException e) {
+      System.out.println("Invalid ID was given by user");
+    }
+    return -1L;
+  }
 }

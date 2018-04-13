@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -20,9 +21,24 @@ public class MainController {
   }
   
   @GetMapping("/")
-  public String showMainPage(Model model) {
+  public String showMainPage(String stringId, Model model) {
+    
     List<Post> posts = mainService.findAllPostsOrderedByScore();
     model.addAttribute("posts", posts);
     return "index";
+  }
+  
+  @GetMapping("/increase")
+  public String increasePostScore(@RequestParam(value = "id") String stringId) {
+    final int difference = 1;
+    mainService.changePostScore(stringId, difference);
+    return "redirect:/";
+  }
+  
+  @GetMapping("/decrease")
+  public String decreasePostScore(@RequestParam(value = "id") String stringId) {
+    final int difference = -1;
+    mainService.changePostScore(stringId, difference);
+    return "redirect:/";
   }
 }

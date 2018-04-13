@@ -17,10 +17,16 @@
                 <div class="row" th:each="post : ${posts}">
                     <div class="col-md-1" th:text="${post.score}"></div>
                     <div class="col-md-1">
-                        <span>+</span>
-                        <span>-</span>
+                        <span class="score-btn">
+                            <a th:href="'/increase?id=' + ${post.id}" th:text="'+'"></a>
+                        </span>
+                        <span class="score-btn">
+                            <a th:href="'/decrease?id=' + ${post.id}" th:text="'-'"></a>
+                        </span>
                     </div>
-                    <div class="col-md-10" th:text="${post.title}"></div>
+                    <div class="col-md-10">
+                        <a th:href="${post.url}" th:text="${post.title}"></a>
+                    </div>
                 </div>
             </div>
             <div class="col-md-3">
