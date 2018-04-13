@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -20,10 +22,16 @@ public class AddController {
     this.addService = addService;
   }
   
-  @GetMapping
+  @GetMapping("/")
   public String showAddPage(Model model) {
     Post post = addService.createNewPost();
     model.addAttribute("post", post);
     return "add-form";
   }
+  
+  @PostMapping("/")
+  public String addPost(@ModelAttribute("post") Post post) {
+    return "redirect:/";
+  }
+  
 }
