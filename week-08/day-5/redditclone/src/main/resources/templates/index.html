@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Reddit Clone</title>
+    <link href="/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="header">
+        <h1>Trending Posts</h1>
+    </div>
+    <div class="post-container">
+        <div class="row" th:each="post : ${posts}">
+            <div class="col-md-2"></div>
+            <div class="col-md-1" th:text="${post.score}"></div>
+            <div class="col-md-1">
+                <span>+</span>
+                <span>-</span>
+            </div>
+            <div class="col-md-1"></div>
+            <div class="col-md-5" th:text="${post.title}"></div>
+            <div class="col-md-2"></div>
+        </div>
+    </div>
+    <div class="footer">
+    </div>
+    <script src="webjars/jquery/3.0.0/jquery.js"></script>
+    <script src="webjars/bootstrap/4.0.0-2/js/bootstrap.min.js"></script>
+</body>
+</html>
