@@ -2,3 +2,7 @@ div.header {
     text-align: center;
     padding: 40px;
 }
+
+div.centered {
+    text-align: center;
+}

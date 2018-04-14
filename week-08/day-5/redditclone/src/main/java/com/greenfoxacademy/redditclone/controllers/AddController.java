@@ -31,6 +31,7 @@ public class AddController {
   
   @PostMapping("/")
   public String addPost(@ModelAttribute("post") Post post) {
+    addService.savePost(post);
     return "redirect:/";
   }
   

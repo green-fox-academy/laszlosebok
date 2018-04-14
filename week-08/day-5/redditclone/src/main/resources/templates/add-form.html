@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Add Post</title>
+    <link href="/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css" rel="stylesheet" />
+    <link th:href="@{/style.css}" rel="stylesheet" />
+</head>
+<body>
+    <div class="header">
+        <h1>Submit New Post</h1>
+    </div>
+    <div class="form-container">
+        <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+                <form action="#" th:action="@{/add/}" th:object="${post}" method="post">
+                    <div class="form-group">
+                        <input class="form-control" type="text" placeholder="Enter title..." name="title"
+                               required />
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" type="text" placeholder="Enter URL..." name="url"
+                               required />
+                    </div>
+                    <div class="centered">
+                        <button class="btn" type="submit">Submit Post</button>
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-4"></div>
+        </div>
+    </div>
+    <script src="webjars/jquery/3.0.0/jquery.js"></script>
+    <script src="webjars/bootstrap/4.0.0-2/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -7,4 +7,5 @@ import org.springframework.stereotype.Service;
 public interface AddService {
   
   Post createNewPost();
+  void savePost(Post post);
 }

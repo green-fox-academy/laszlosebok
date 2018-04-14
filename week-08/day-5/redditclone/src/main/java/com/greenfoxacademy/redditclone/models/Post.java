@@ -1,26 +1,26 @@
 package com.greenfoxacademy.redditclone.models;
 
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import org.hibernate.annotations.CreationTimestamp;
+
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity(name = "posts")
 public class Post {
   
-  
-  @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
+  @Id
   private long id;
   
   private int score;
   private String title;
-  private LocalDateTime createdAt;
   //private UserModel createdBy; TODO - implement UserModels
   private String url;
   
+  @Column(name = "created_at", updatable = false)
+  @CreationTimestamp
+  private LocalDateTime createdAt;
   
   public void changeScore(int diff) {
     score += diff;
