@@ -60,11 +60,13 @@ public class TodoServiceImpl implements TodoService {
   
   @Override
   public List<Todo> findListFromUserInput(String input) {
+    // checks if the input is valid: not null and not an empty string
     if (!validityCheck(input)) {
       return findTodos();
     }
     String[] args = inputToArray(input);
-    if (args[0].length() == 0 && args[1].length() == 0 && args[2].length() == 0) {
+    // checks if the array has a valid title or valid fields
+    if (validityCheck(args)) {
       return findTodos();
     }
     if (args[0].length() > 0) {
@@ -79,16 +81,13 @@ public class TodoServiceImpl implements TodoService {
     // 0th index is the title
     // 1st string value of boolean urgent
     // 2nd string value of boolean done
-    // they remain "" if that particular argument was not given in the search box
+    // they remain null if that particular argument was not given in the search box
     
-    String[] args = new String[]{"", "", ""};
+    String[] args = new String[3];
     boolean hasUrgentFilter = s.contains("urgent:");
     boolean hasDoneFilter = s.contains("done:");
-    String title = parseTitle(s);
-    boolean hasTitle = (title.length() > 0);
-    if (hasTitle) {
-      args[0] = title;
-    }
+    
+    args[0] = parseTitle(s);
     if (hasUrgentFilter) {
       args[1] = parseFilterValue(s, "urgent:");
     }
@@ -102,11 +101,9 @@ public class TodoServiceImpl implements TodoService {
     boolean isUrgent = Boolean.parseBoolean(urgent);
     boolean isDone = Boolean.parseBoolean(done);
     
-    if(urgent.equals("") && done.equals("")) {
-      return  findTodos();
-    } else if (urgent.equals("")) {
+    if (urgent == null) {
       return todoRepository.findAllByDone(isDone);
-    } else if (done.equals("")) {
+    } else if (done == null) {
       return todoRepository.findAllByUrgent(isUrgent);
     } else {
       return todoRepository.findAllByUrgentAndDone(isUrgent, isDone);
@@ -117,13 +114,17 @@ public class TodoServiceImpl implements TodoService {
     return (s != null && s.trim().length() > 0);
   }
   
+  private boolean validityCheck(String[] args) {
+    return args[0].length() == 0 && args[1] == null && args[2] == null;
+  }
+  
   private String parseFilterValue(String s, String splitBy) {
     if (s.split(splitBy)[1].startsWith("yes")) {
       return "true";
     } else if (s.split(splitBy)[1].startsWith("no")) {
       return "false";
     } else {
-      return "";
+      return null;
     }
   }
   
