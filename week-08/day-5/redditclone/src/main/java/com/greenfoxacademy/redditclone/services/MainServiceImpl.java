@@ -18,8 +18,10 @@ public class MainServiceImpl implements MainService {
   }
   
   @Override
-  public List<Post> findAllPostsOrderedByScore() {
-    return postRepository.findAllByOrderByScoreDesc();
+  public List<Post> findPostsOrderedByScore(int postPerPage, int page) {
+    int startIndex = (page - 1) * postPerPage;
+    int endIndex = page * postPerPage - 1;
+    return postRepository.findAllByOrderByScoreDesc().subList(startIndex, endIndex);
   }
   
   @Override
@@ -29,6 +31,15 @@ public class MainServiceImpl implements MainService {
     if (post != null) {
       post.changeScore(difference);
       postRepository.save(post);
+    }
+  }
+  
+  @Override
+  public boolean pageNumberValidation(String s) {
+    try {
+      return (s !=null && Integer.parseInt(s) > 1);
+    } catch (NumberFormatException e) {
+      return false;
     }
   }
   

@@ -1,6 +1,5 @@
 package com.greenfoxacademy.redditclone.controllers;
 
-import com.greenfoxacademy.redditclone.factories.PostFactory;
 import com.greenfoxacademy.redditclone.models.Post;
 import com.greenfoxacademy.redditclone.services.AddService;
 import org.springframework.beans.factory.annotation.Autowired;

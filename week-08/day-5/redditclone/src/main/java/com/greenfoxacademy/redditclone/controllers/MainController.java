@@ -6,12 +6,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
 @Controller
 public class MainController {
+  
+  private final int postPerPage = 10;
   
   private final MainService mainService;
   
@@ -21,11 +24,27 @@ public class MainController {
   }
   
   @GetMapping("/")
-  public String showMainPage(String stringId, Model model) {
-    
-    List<Post> posts = mainService.findAllPostsOrderedByScore();
+  public String showMainPage(Model model) {
+    final int page = 1;
+    List<Post> posts = mainService.findPostsOrderedByScore(postPerPage, page);
     model.addAttribute("posts", posts);
+    model.addAttribute("page", page);
     return "index";
+  }
+  
+  @GetMapping("/page/{pageNum}")
+  public String showPage(@PathVariable(value = "pageNum", required = false) String pageNum,
+                         Model model) {
+    if (mainService.pageNumberValidation(pageNum)) {
+      int page = Integer.parseInt(pageNum);
+      List<Post> posts = mainService.findPostsOrderedByScore(postPerPage, page);
+      model.addAttribute("posts", posts);
+      model.addAttribute("page", page);
+      return "index";
+    } else {
+      return "redirect:/";
+    }
+    
   }
   
   @GetMapping("/increase")
