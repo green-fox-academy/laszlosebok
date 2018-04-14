@@ -31,6 +31,10 @@ public class Post {
     return id + " " + score + " " + title;
   }
   
+  public String getFormattedDate() {
+    return String.join(" ", createdAt.toString().split("T"));
+  }
+  
   // Getters and Setters
   public long getId() {
     return id;

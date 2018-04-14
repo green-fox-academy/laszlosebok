@@ -3,6 +3,10 @@ div.header {
     padding: 40px;
 }
 
-div.centered {
+.centered {
     text-align: center;
+}
+
+div.abs-center {
+    padding:25%
 }
