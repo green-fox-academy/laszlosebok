@@ -14,8 +14,6 @@ import java.util.List;
 @Controller
 public class MainController {
   
-  private final int postPerPage = 10;
-  
   private final MainService mainService;
   
   @Autowired
@@ -26,9 +24,7 @@ public class MainController {
   @GetMapping("/")
   public String showMainPage(Model model) {
     final int page = 1;
-    List<Post> posts = mainService.findPostsOrderedByScore(postPerPage, page);
-    model.addAttribute("posts", posts);
-    model.addAttribute("page", page);
+    model = mainService.generateModelFromPageNumber(page, model);
     return "index";
   }
   
@@ -37,14 +33,11 @@ public class MainController {
                          Model model) {
     if (mainService.pageNumberValidation(pageNum)) {
       int page = Integer.parseInt(pageNum);
-      List<Post> posts = mainService.findPostsOrderedByScore(postPerPage, page);
-      model.addAttribute("posts", posts);
-      model.addAttribute("page", page);
+      model = mainService.generateModelFromPageNumber(page, model);
       return "index";
     } else {
       return "redirect:/";
     }
-    
   }
   
   @GetMapping("/increase")

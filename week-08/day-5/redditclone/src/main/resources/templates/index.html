@@ -46,8 +46,22 @@
             <div class="col-md-2"></div>
         </div>
     </div>
-    <div class="footer">
-    </div>
+    <nav class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-6">
+            <a th:href="'/page/' + ${page - 1}">
+                <button type="button" class="btn" th:if="${page} > 1" th:text="'< Back'"></button>
+            </a>
+            <a th:href="@{/}">
+                <button type="button" class="btn" th:text="'Main'"></button>
+            </a>
+            <a th:href="'/page/' + ${page + 1}">
+                <button type="button" class="btn" th:if="${hasNext}" th:text="'Next >'"></button>
+            </a>
+        </div>
+        <div class="col-md-2"></div>
+        <div class="col-md-2"></div>
+    </nav>
     <script src="webjars/jquery/3.0.0/jquery.js"></script>
     <script src="webjars/bootstrap/4.0.0-2/js/bootstrap.min.js"></script>
 </body>
