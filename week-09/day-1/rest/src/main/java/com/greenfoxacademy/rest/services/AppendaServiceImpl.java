@@ -10,4 +10,9 @@ public class AppendaServiceImpl implements AppendaService {
   public AppendaResponse createAppendaResponse(String appendee) {
     return new AppendaResponse(appendee);
   }
+  
+  @Override
+  public void log(String s, String appendee) {
+    
+  }
 }

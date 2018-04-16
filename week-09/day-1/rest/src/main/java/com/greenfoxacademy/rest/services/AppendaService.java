@@ -7,4 +7,5 @@ import org.springframework.stereotype.Service;
 public interface AppendaService {
   
   AppendaResponse createAppendaResponse(String appendee);
+  void log(String s, String appendee);
 }

@@ -20,6 +20,7 @@ public class AppendaRestController {
   
   @GetMapping("{appendable}")
   public Object append(@PathVariable(value = "appendable") String appendee) {
+    appendaService.log("/appenda/", appendee);
     return appendaService.createAppendaResponse(appendee);
   }
 }
