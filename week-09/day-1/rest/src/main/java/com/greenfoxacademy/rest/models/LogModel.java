@@ -19,6 +19,16 @@ public class LogModel {
   private String endpoint;
   private String data;
   
+  public LogModel() {
+  }
+  
+  public LogModel(String endpoint, String data) {
+    this();
+    this.endpoint = endpoint;
+    this.data = data;
+  }
+  
+  // Getters and Setters
   public long getId() {
     return id;
   }
