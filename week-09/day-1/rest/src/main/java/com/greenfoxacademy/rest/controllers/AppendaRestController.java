@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class AppendaRestController {
   
   @GetMapping("{appendable}")
-  public Object append(@PathVariable(value = "appendable", required = false) String appendee) {
+  public Object append(@PathVariable(value = "appendable") String appendee) {
   return null;
   }
 }
