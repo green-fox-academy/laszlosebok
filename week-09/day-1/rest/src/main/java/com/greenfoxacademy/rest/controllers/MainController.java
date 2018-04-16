@@ -1,5 +1,6 @@
 package com.greenfoxacademy.rest.controllers;
 
+import com.greenfoxacademy.rest.models.DoubleResponse;
 import com.greenfoxacademy.rest.services.MainService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,10 +26,11 @@ public class MainController {
   
   @GetMapping("/doubling")
   @ResponseBody
-  public String doubling(@RequestParam("input") String input) {
-    if (mainService.parseInt(input) != null) {
-      return null;
+  public Object doubling(@RequestParam("input") String input) {
+    Integer number = mainService.parseInt(input);
+    if (number != null) {
+      return mainService.createDoubleResponse(number);
     }
-    return null;
+    return "{\"error\": \"Please provide an input!\"}";
   }
 }
