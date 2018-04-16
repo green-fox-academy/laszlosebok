@@ -13,6 +13,6 @@ public class AppendaServiceImpl implements AppendaService {
   
   @Override
   public void log(String s, String appendee) {
-    
+  
   }
 }
