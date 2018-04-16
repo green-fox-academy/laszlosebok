@@ -24,4 +24,13 @@ public class MainRestController {
     }
     return "{\"error\": \"Please provide an input!\"}";
   }
+  
+  @GetMapping("/greeter")
+  public Object greeter(@RequestParam("name") String name,
+                        @RequestParam("title") String title) {
+    if (name != null && title != null) {
+      return null;
+    }
+    return null;
+  }
 }
