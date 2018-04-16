@@ -26,11 +26,11 @@ public class MainRestController {
   }
   
   @GetMapping("/greeter")
-  public Object greeter(@RequestParam("name") String name,
-                        @RequestParam("title") String title) {
-    if (name != null && title != null) {
-      return null;
+  public Object greeter(@RequestParam(value = "name", required = false) String name,
+                        @RequestParam(value = "title", required = false) String title) {
+    if (name != null && title != null && !name.isEmpty() && !title.isEmpty()) {
+      return mainService.createGreeterResponse(name, title);
     }
-    return null;
+    return "{\"error\": \"Please provide a name!\"}";
   }
 }
