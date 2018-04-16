@@ -8,13 +8,11 @@ import org.springframework.stereotype.Service;
 @Service
 public class DountilServiceImpl  implements DountilService{
   
-  @Override
-  public SumResponse createSumResponse(int number) {
+  private SumResponse createSumResponse(int number) {
     return new SumResponse(number);
   }
   
-  @Override
-  public FactorResponse createFactorResponse(int number) {
+  private FactorResponse createFactorResponse(int number) {
     return new FactorResponse(number);
   }
   
@@ -28,5 +26,15 @@ public class DountilServiceImpl  implements DountilService{
     } catch (NullPointerException e) {
       return null;
     }
+  }
+  
+  @Override
+  public Object generateResponse(String operation, Integer untilNumber) {
+    if (operation.equals("sum")) {
+      return createSumResponse(untilNumber);
+    } else if (operation.equals("factor")) {
+      return createFactorResponse(untilNumber);
+    }
+    return "{\"error\": \"No such operation!\"}";
   }
 }

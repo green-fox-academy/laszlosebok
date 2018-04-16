@@ -24,11 +24,6 @@ public class DountilRestController {
     if (untilNumber == null) {
       return "{\"error\": \"Please provide a number!\"}";
     }
-    if (operation.equals("sum")) {
-      return dountilService.createSumResponse(untilNumber);
-    } else if (operation.equals("factor")) {
-      return dountilService.createFactorResponse(untilNumber);
-    }
-    return "{\"error\": \"No such operation!\"}";
+    return dountilService.generateResponse(operation, untilNumber);
   }
 }
