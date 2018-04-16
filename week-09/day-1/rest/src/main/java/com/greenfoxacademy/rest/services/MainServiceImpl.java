@@ -2,6 +2,7 @@ package com.greenfoxacademy.rest.services;
 
 import com.greenfoxacademy.rest.factories.DoubleResponseFactory;
 import com.greenfoxacademy.rest.factories.GreeterResponseFactory;
+import com.greenfoxacademy.rest.factories.OperationResponseFactory;
 import com.greenfoxacademy.rest.models.DoubleResponse;
 import com.greenfoxacademy.rest.models.GreeterResponse;
 import com.greenfoxacademy.rest.models.OperationModel;
@@ -11,7 +12,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class MainServiceImpl implements MainService {
   
-  private final OperationResponseFactory  operationResponseFactory;
+  private final OperationResponseFactory operationResponseFactory;
   private final DoubleResponseFactory doubleResponseFactory;
   private final GreeterResponseFactory greeterResponseFactory;
   
@@ -21,6 +22,7 @@ public class MainServiceImpl implements MainService {
                          OperationResponseFactory operationResponseFactory) {
     this.doubleResponseFactory = doubleResponseFactory;
     this.greeterResponseFactory = greeterResponseFactory;
+    this.operationResponseFactory = operationResponseFactory;
   }
   
   @Override
@@ -47,9 +49,9 @@ public class MainServiceImpl implements MainService {
   public Object createOperationResponse(OperationModel operation) {
     String what = operation.getWhat();
     if (what.equals("double")) {
-      return operationResponseFactory.createOperationArrayResult(operation);
+      return operationResponseFactory.createOperationArrayResponse(operation);
     } else if (what.equals("sum") || what.equals("multiply")) {
-      return operationResponseFactory.createOperationIntResult(operation);
+      return operationResponseFactory.createOperationIntResponse(operation);
     }
     return null;
   }

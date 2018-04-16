@@ -38,6 +38,8 @@ public class DountilServiceImpl  implements DountilService{
       return Integer.parseInt(until.getUntil());
     } catch (NumberFormatException e) {
       return null;
+    } catch (NullPointerException e) {
+      return null;
     }
   }
 }

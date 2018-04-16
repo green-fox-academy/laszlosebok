@@ -18,7 +18,8 @@ public class DountilRestController {
   }
   
   @PostMapping("{what}")
-  public Object dountil(@PathVariable("what") String operation, @RequestBody Until until) {
+  public Object dountil(@PathVariable(value = "what") String operation,
+                        @RequestBody(required = false) Until until) {
     Integer untilNumber = dountilService.parseInt(until);
     if (untilNumber == null) {
       return "{\"error\": \"Please provide a number!\"}";

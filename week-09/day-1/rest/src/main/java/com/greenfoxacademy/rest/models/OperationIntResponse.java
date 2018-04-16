@@ -19,7 +19,7 @@ public class OperationIntResponse {
   }
   
   private Integer multiply(int[] numbers) {
-    int result = 0;
+    int result = 1;
     for (int number : numbers) {
       result *= number;
     }
@@ -34,5 +34,11 @@ public class OperationIntResponse {
     return sum;
   }
   
+  public Integer getResult() {
+    return result;
+  }
   
+  public void setResult(Integer result) {
+    this.result = result;
+  }
 }

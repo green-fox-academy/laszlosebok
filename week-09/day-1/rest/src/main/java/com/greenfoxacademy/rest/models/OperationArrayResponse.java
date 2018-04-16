@@ -2,11 +2,11 @@ package com.greenfoxacademy.rest.models;
 
 import java.util.Arrays;
 
-public class OperationArrayResult {
+public class OperationArrayResponse {
   
   private int[] result;
   
-  public OperationArrayResult(OperationModel operation) {
+  public OperationArrayResponse(OperationModel operation) {
     result = calculateDouble(operation);
   }
   
