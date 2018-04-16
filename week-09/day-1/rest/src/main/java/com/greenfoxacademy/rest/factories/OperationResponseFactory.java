@@ -8,11 +8,21 @@ import org.springframework.stereotype.Component;
 @Component
 public class OperationResponseFactory {
   
-  public OperationArrayResponse createOperationArrayResponse(OperationModel operation) {
+  private OperationArrayResponse createArrayResponse(OperationModel operation) {
     return new OperationArrayResponse(operation);
   }
   
-  public OperationIntResponse createOperationIntResponse(OperationModel operation) {
+  private OperationIntResponse createIntResponse(OperationModel operation) {
     return new OperationIntResponse(operation);
+  }
+  
+  public Object createOperationResponse(OperationModel operation) {
+    String what = operation.getWhat();
+    if (what.equals("double")) {
+      return createArrayResponse(operation);
+    } else if (what.equals("sum") || what.equals("multiply")) {
+      return createIntResponse(operation);
+    }
+    return null;
   }
 }

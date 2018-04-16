@@ -1,7 +1,5 @@
 package com.greenfoxacademy.rest.services;
 
-import com.greenfoxacademy.rest.factories.DoubleResponseFactory;
-import com.greenfoxacademy.rest.factories.GreeterResponseFactory;
 import com.greenfoxacademy.rest.factories.OperationResponseFactory;
 import com.greenfoxacademy.rest.models.DoubleResponse;
 import com.greenfoxacademy.rest.models.GreeterResponse;
@@ -13,15 +11,9 @@ import org.springframework.stereotype.Service;
 public class MainServiceImpl implements MainService {
   
   private final OperationResponseFactory operationResponseFactory;
-  private final DoubleResponseFactory doubleResponseFactory;
-  private final GreeterResponseFactory greeterResponseFactory;
   
   @Autowired
-  public MainServiceImpl(DoubleResponseFactory doubleResponseFactory,
-                         GreeterResponseFactory greeterResponseFactory,
-                         OperationResponseFactory operationResponseFactory) {
-    this.doubleResponseFactory = doubleResponseFactory;
-    this.greeterResponseFactory = greeterResponseFactory;
+  public MainServiceImpl(OperationResponseFactory operationResponseFactory) {
     this.operationResponseFactory = operationResponseFactory;
   }
   
@@ -37,22 +29,16 @@ public class MainServiceImpl implements MainService {
   
   @Override
   public DoubleResponse createDoubleResponse(Integer number) {
-    return doubleResponseFactory.createDoubleResponse(number);
+    return new DoubleResponse(number);
   }
   
   @Override
   public GreeterResponse createGreeterResponse(String name, String title) {
-    return greeterResponseFactory.createGreeterResponse(name, title);
+    return new GreeterResponse(name, title);
   }
   
   @Override
   public Object createOperationResponse(OperationModel operation) {
-    String what = operation.getWhat();
-    if (what.equals("double")) {
-      return operationResponseFactory.createOperationArrayResponse(operation);
-    } else if (what.equals("sum") || what.equals("multiply")) {
-      return operationResponseFactory.createOperationIntResponse(operation);
-    }
-    return null;
+    return operationResponseFactory.createOperationResponse(operation);
   }
 }
