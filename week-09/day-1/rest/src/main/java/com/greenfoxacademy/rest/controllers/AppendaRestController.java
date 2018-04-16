@@ -11,6 +11,6 @@ public class AppendaRestController {
   
   @GetMapping("{appendable}")
   public Object append(@PathVariable(value = "appendable", required = false) String appendee) {
-  
+  return null;
   }
 }
