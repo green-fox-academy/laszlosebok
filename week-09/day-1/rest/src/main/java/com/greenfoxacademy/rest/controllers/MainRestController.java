@@ -17,6 +17,7 @@ public class MainRestController {
   
   @GetMapping("/doubling")
   public Object doubling(@RequestParam(value = "input", required = false) String input) {
+    mainService.log("/doubling", input);
     Integer number = mainService.parseInt(input);
     if (number != null) {
       return mainService.createDoubleResponse(number);

@@ -12,4 +12,5 @@ public interface MainService {
   DoubleResponse createDoubleResponse(Integer number);
   GreeterResponse createGreeterResponse(String name, String title);
   Object createOperationResponse(OperationModel operation);
+  void log(String endpoint, String input);
 }
