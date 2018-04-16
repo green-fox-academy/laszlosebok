@@ -9,7 +9,7 @@ public class FactorResponse {
   }
   
   private long calculateFactor(int until) {
-    long result = 0;
+    long result = 1;
     for (int i = 1; i < until+1; i++) {
       result *= i;
     }
