@@ -1,5 +1,6 @@
 package com.greenfoxacademy.rest.controllers;
 
+import com.greenfoxacademy.rest.models.OperationModel;
 import com.greenfoxacademy.rest.services.MainService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
