@@ -3,6 +3,7 @@ package com.greenfoxacademy.rest.controllers;
 
 import com.greenfoxacademy.rest.models.Until;
 import com.greenfoxacademy.rest.services.DountilService;
+import com.greenfoxacademy.rest.services.LogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,20 +11,23 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/dountil/")
 public class DountilRestController {
   
-  private DountilService dountilService;
+  private final DountilService dountilService;
+  private final LogService logService;
   
   @Autowired
-  public DountilRestController(DountilService dountilService) {
+  public DountilRestController(DountilService dountilService,
+                               LogService logService) {
     this.dountilService = dountilService;
+    this.logService = logService;
   }
   
   @PostMapping("{what}")
   public Object dountil(@PathVariable(value = "what") String operation,
                         @RequestBody(required = false) Until until) {
-    Integer untilNumber = dountilService.parseInt(until);
-    if (untilNumber == null) {
+    logService.logDountil(operation, until);
+    if (until == null || until.getUntil() == null) {
       return "{\"error\": \"Please provide a number!\"}";
     }
-    return dountilService.generateResponse(operation, untilNumber);
+    return dountilService.generateResponse(operation, until.getUntil());
   }
 }

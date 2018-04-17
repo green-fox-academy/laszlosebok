@@ -17,18 +17,6 @@ public class DountilServiceImpl  implements DountilService{
   }
   
   @Override
-  public Integer parseInt(Until until) {
-    
-    try {
-      return Integer.parseInt(until.getUntil());
-    } catch (NumberFormatException e) {
-      return null;
-    } catch (NullPointerException e) {
-      return null;
-    }
-  }
-  
-  @Override
   public Object generateResponse(String operation, Integer untilNumber) {
     if (operation.equals("sum")) {
       return createSumResponse(untilNumber);

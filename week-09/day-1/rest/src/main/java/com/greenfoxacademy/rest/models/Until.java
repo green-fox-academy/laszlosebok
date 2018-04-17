@@ -2,16 +2,21 @@ package com.greenfoxacademy.rest.models;
 
 public class Until {
 
-  private String until;
+  private Integer until;
   
   public Until(){
   }
   
-  public String getUntil() {
+  @Override
+  public String toString() {
+    return "{\"until\": "+ until +"}";
+  }
+  
+  public Integer getUntil() {
     return until;
   }
   
-  public void setUntil(String until) {
+  public void setUntil(Integer until) {
     this.until = until;
   }
 }
