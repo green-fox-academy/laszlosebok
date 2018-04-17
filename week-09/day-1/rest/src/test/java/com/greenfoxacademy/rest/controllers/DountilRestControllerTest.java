@@ -24,7 +24,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest(classes = RestApplication.class)
 @WebAppConfiguration
 @EnableWebMvc
-public class MainRestControllerTest {
+public class DountilRestControllerTest {
   
   private MediaType contentType = new MediaType(MediaType.APPLICATION_JSON.getType(),
       MediaType.APPLICATION_JSON.getSubtype(),
@@ -40,41 +40,39 @@ public class MainRestControllerTest {
     this.mockMvc = webAppContextSetup(webApplicationContext).build();
   }
   
-  //Doubling endpoint tests
   @Test
-  public void testDoublingWithoutData() throws Exception {
-    mockMvc.perform(get("/doubling"))
-        .andExpect(jsonPath("$.error", is("Please provide an input!")));
+  public void testDountilWithoutWhat() throws Exception {
+    mockMvc.perform(post("/dountil")
+        .contentType(MediaType.APPLICATION_JSON)
+        .content("{\"until\": 5}"))
+        .andExpect(status().is4xxClientError());
   }
   
   @Test
-  public void testDoublingWithInputFive() throws Exception {
-    mockMvc.perform(get("/doubling").param("input", "5"))
-        .andExpect(status().isOk())
-        .andExpect(content().contentType(contentType))
-        .andExpect(jsonPath("$.result", is(10)));
-  }
-  
-  //Greeter endpoint tests
-  @Test
-  public void testGreeterWithoutName() throws Exception {
-    mockMvc.perform(get("/greeter"))
-        .andExpect(jsonPath("$.error", is("Please provide a name!")));
+  public void testDountilSumWithoutNumber() throws Exception {
+    mockMvc.perform(post("/dountil/sum"))
+        .andExpect(jsonPath("$.error", is("Please provide a number!")));
   }
   
   @Test
-  public void testGreeterWithParameters() throws Exception {
+  public void testDountilSumWithNumber() throws Exception {
     mockMvc
-        .perform(get("/greeter")
-            .param("name", "petikeh")
-            .param("title", "student"))
+        .perform(post("/dountil/sum")
+            .contentType(MediaType.APPLICATION_JSON)
+            .content("{\"until\": 7}"))
         .andExpect(status().isOk())
         .andExpect(content().contentType(contentType))
-        .andExpect(jsonPath("$.welcome_message", is("Oh, hi there petikeh, my dear student!")));
+        .andExpect(jsonPath("$.result", is(28)));
   }
   
-  //Arrays endpoint tests
   @Test
-  public void arrays() {
+  public void testDountilFactorWithNumber() throws Exception {
+    mockMvc
+        .perform(post("/dountil/factor")
+            .contentType(MediaType.APPLICATION_JSON)
+            .content("{\"until\": 4}"))
+        .andExpect(status().isOk())
+        .andExpect(content().contentType(contentType))
+        .andExpect(jsonPath("$.result", is(24)));
   }
 }

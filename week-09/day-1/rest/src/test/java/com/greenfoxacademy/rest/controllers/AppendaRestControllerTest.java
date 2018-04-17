@@ -24,7 +24,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest(classes = RestApplication.class)
 @WebAppConfiguration
 @EnableWebMvc
-public class MainRestControllerTest {
+public class AppendaRestControllerTest {
   
   private MediaType contentType = new MediaType(MediaType.APPLICATION_JSON.getType(),
       MediaType.APPLICATION_JSON.getSubtype(),
@@ -40,41 +40,17 @@ public class MainRestControllerTest {
     this.mockMvc = webAppContextSetup(webApplicationContext).build();
   }
   
-  //Doubling endpoint tests
   @Test
-  public void testDoublingWithoutData() throws Exception {
-    mockMvc.perform(get("/doubling"))
-        .andExpect(jsonPath("$.error", is("Please provide an input!")));
+  public void testAppendaWithoutAppendee() throws Exception {
+    mockMvc.perform(get("/appenda"))
+        .andExpect(status().is4xxClientError());
   }
   
   @Test
-  public void testDoublingWithInputFive() throws Exception {
-    mockMvc.perform(get("/doubling").param("input", "5"))
+  public void testAppendaWithAppendee() throws Exception {
+    mockMvc.perform(get("/appenda/kuty"))
         .andExpect(status().isOk())
         .andExpect(content().contentType(contentType))
-        .andExpect(jsonPath("$.result", is(10)));
-  }
-  
-  //Greeter endpoint tests
-  @Test
-  public void testGreeterWithoutName() throws Exception {
-    mockMvc.perform(get("/greeter"))
-        .andExpect(jsonPath("$.error", is("Please provide a name!")));
-  }
-  
-  @Test
-  public void testGreeterWithParameters() throws Exception {
-    mockMvc
-        .perform(get("/greeter")
-            .param("name", "petikeh")
-            .param("title", "student"))
-        .andExpect(status().isOk())
-        .andExpect(content().contentType(contentType))
-        .andExpect(jsonPath("$.welcome_message", is("Oh, hi there petikeh, my dear student!")));
-  }
-  
-  //Arrays endpoint tests
-  @Test
-  public void arrays() {
+        .andExpect(jsonPath("$.appended", is("kutya")));
   }
 }
