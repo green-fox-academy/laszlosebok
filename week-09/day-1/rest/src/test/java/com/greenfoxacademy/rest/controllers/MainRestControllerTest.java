@@ -14,6 +14,8 @@ import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import java.nio.charset.Charset;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 import static org.hamcrest.core.Is.is;
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppContextSetup;
@@ -75,6 +77,69 @@ public class MainRestControllerTest {
   
   //Arrays endpoint tests
   @Test
-  public void arrays() {
+  public void testArraysWithoutData() throws Exception {
+    mockMvc
+        .perform(post("/arrays"))
+        .andExpect(status().isBadRequest());
+  }
+  
+  @Test
+  public void testArraysWithoutWhat() throws Exception {
+    mockMvc
+        .perform(post("/arrays")
+            .contentType(MediaType.APPLICATION_JSON)
+            .content("{\"numbers\": [1, 2]}"))
+        .andExpect(status().isOk())
+        .andExpect(jsonPath("$.error", is("Please provide what to do with the numbers!")));
+  }
+  
+  @Test
+  public void testArraysWithoutNumbers() throws Exception {
+    mockMvc
+        .perform(post("/arrays")
+            .contentType(MediaType.APPLICATION_JSON)
+            .content("{\"what\": \"multiply\"}"))
+        .andExpect(status().isOk())
+        .andExpect(jsonPath("$.error", is("Please provide what to do with the numbers!")));
+  }
+  
+  @Test
+  public void testArraysWithEmptyJson() throws Exception {
+    mockMvc
+        .perform(post("/arrays")
+            .contentType(MediaType.APPLICATION_JSON)
+            .content("{}"))
+        .andExpect(status().isOk())
+        .andExpect(jsonPath("$.error", is("Please provide what to do with the numbers!")));
+  }
+  
+  @Test
+  public void testArraysSum() throws Exception {
+    mockMvc
+        .perform(post("/arrays")
+            .contentType(MediaType.APPLICATION_JSON)
+            .content("{\"what\": \"sum\", \"numbers\": [1, 5, 6]}"))
+        .andExpect(status().isOk())
+        .andExpect(jsonPath("$.result", is(12)));
+  }
+  
+  @Test
+  public void testArraysMultiply() throws Exception {
+    mockMvc
+        .perform(post("/arrays")
+            .contentType(MediaType.APPLICATION_JSON)
+            .content("{\"what\": \"multiply\", \"numbers\": [1, 5, 6]}"))
+        .andExpect(status().isOk())
+        .andExpect(jsonPath("$.result", is(30)));
+  }
+  
+  @Test
+  public void testArraysDouble() throws Exception {
+    mockMvc
+        .perform(post("/arrays")
+            .contentType(MediaType.APPLICATION_JSON)
+            .content("{\"what\": \"double\", \"numbers\": [1, 5, 6]}"))
+        .andExpect(status().isOk())
+        .andExpect(jsonPath("$.result", is(new ArrayList<>(Arrays.asList(2,10,12)))));
   }
 }
