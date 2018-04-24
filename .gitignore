@@ -4,3 +4,8 @@ out
 *.xml
 practice
 Graphic2.java
+
+# C Sharp Stuff
+[Oo]bj
+[Dd]ebug
+*.suo
