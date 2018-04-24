@@ -1,0 +1,35 @@
+﻿@model TodoApp.Models.Todo
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Edit Todo</title>
+</head>
+<body>
+    <div class="header">
+        <h1>Edit Todo</h1>
+    </div>
+    <div class="todo-form">
+        <form action="/edit/@Model.Id" method="post">
+            <!--<div class="form-checkbox">
+                <label for="urgent">Urgent:</label>
+                <input type="checkbox" id="urgent" name="Urgent" checked="@Model.Urgent"/>
+                <label for="done">Done:</label>
+                <input type="checkbox" id="done" name="Done" checked="@Model.Done"/>
+            </div>-->
+            <div class="form-checkbox">
+                <span>Urgent: </span>@Html.CheckBoxFor(m => m.Urgent)
+                <span>Done: </span>@Html.CheckBoxFor(m => m.Done)
+            </div>
+            @Html.HiddenFor(m => m.CreatedAt)
+            <div class="form-textbox">
+                <label for="title">Title:</label>
+                <input type="text" id="title" name="Title" value="@Model.Title" />
+            </div>
+            <button type="submit">Add Todo</button>
+        </form>
+    </div>
+
+</body>
+</html>
