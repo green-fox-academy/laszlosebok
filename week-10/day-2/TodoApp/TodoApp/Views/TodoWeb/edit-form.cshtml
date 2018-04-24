@@ -5,12 +5,16 @@
 <head>
     <meta charset="utf-8" />
     <title>Edit Todo</title>
+    <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/lib/assets/style.css" rel="stylesheet" />
 </head>
 <body>
-    <div class="header">
-        <h1>Edit Todo</h1>
-    </div>
-    <div class="todo-form">
+<div class="header">
+    <h1>Edit Todo</h1>
+</div>
+<div class="row todo-form">
+    <div class="col-md-4"></div>
+    <div class="col-md-4 custom-form">
         <form action="/edit/@Model.Id" method="post">
             <!--<div class="form-checkbox">
                 <label for="urgent">Urgent:</label>
@@ -18,18 +22,21 @@
                 <label for="done">Done:</label>
                 <input type="checkbox" id="done" name="Done" checked="@Model.Done"/>
             </div>-->
-            <div class="form-checkbox">
+            <div class="form-group">
                 <span>Urgent: </span>@Html.CheckBoxFor(m => m.Urgent)
                 <span>Done: </span>@Html.CheckBoxFor(m => m.Done)
             </div>
             @Html.HiddenFor(m => m.CreatedAt)
-            <div class="form-textbox">
+            <div class="form-group">
                 <label for="title">Title:</label>
-                <input type="text" id="title" name="Title" value="@Model.Title" />
+                <input type="text" id="title" name="Title" value="@Model.Title"/>
             </div>
-            <button type="submit">Add Todo</button>
+            <button class="btn btn-success" type="submit">Add Todo</button><a class="btn btn-danger" href="/">Cancel</a>
         </form>
     </div>
-
+    <div class="col-md-4"></div>
+</div>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
 </body>
 </html>

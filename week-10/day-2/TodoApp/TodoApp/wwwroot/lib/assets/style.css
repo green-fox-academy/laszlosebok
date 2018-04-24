@@ -1,0 +1,43 @@
+﻿div.header {
+    padding: 20px 0;
+    text-align: center;
+}
+
+.buttons {
+    text-align: center;
+    padding-bottom: 30px;
+}
+
+.centered-char {
+    font-size: 1.3em;
+    text-align: center;
+}
+
+.centered {
+    text-align: center;
+}
+
+.table th {
+    border-top: none;
+    border-bottom: none !important;
+}
+
+.custom-form {
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #ececec;
+}
+
+.card-header {
+    padding-top: 15px;
+    padding-bottom: 5px;
+}
+
+.card {
+    background-color: #ececec;
+    border-radius: 10px;
+}
+
+.bottompad {
+    padding-bottom: 15px;
+}

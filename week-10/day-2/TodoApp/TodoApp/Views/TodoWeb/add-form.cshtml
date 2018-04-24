@@ -3,16 +3,26 @@
 <head>
     <meta charset="utf-8" />
     <title>Add New Todo</title>
+    <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/lib/assets/style.css" rel="stylesheet" />
 </head>
 <body>
 <div class="header">
     <h1>Add New Todo</h1>
 </div>
-<div class="todo-form">
-    <form action="/add" method="post">
-        <input type="text" name="Title" placeholder="Title..."/>
-        <button type="submit">Add Todo</button>
-    </form>
+<div class="row todo-form">
+    <div class="col-md-4"></div>
+    <div class="col-md-4 custom-form">
+        <form action="/add" method="post">
+            <div class="form-group">
+                <input type="text" name="Title" placeholder="Title..."/>
+            </div>
+            <button class="btn btn-success" type="submit">Add Todo</button><a class="btn btn-danger" href="/">Cancel</a>
+        </form>
+    </div>
+    <div class="col-md-4"></div>
 </div>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
 </body>
 </html>
