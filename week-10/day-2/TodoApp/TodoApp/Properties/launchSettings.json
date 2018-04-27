@@ -12,6 +12,8 @@
       "commandName": "IISExpress",
       "launchBrowser": true,
       "environmentVariables": {
+        "JWT_SECRET": "L4QOIryHNOsXTTyOeT40DohUAGuyhECn",
+        "JWT_SECRET_B64": "TDRRT0lyeUhOT3NYVFR5T2VUNDBEb2hVQUd1eWhFQ24=",
         "DB_CONNECTION": "Server=(localdb)\\mssqllocaldb;Database=TodoDb;Trusted_Connection=True;",
         "ASPNETCORE_ENVIRONMENT": "Development"
       }

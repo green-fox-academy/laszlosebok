@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using TodoApp.Models;
 using TodoApp.Services;
@@ -10,20 +8,22 @@ using TodoApp.Services;
 
 namespace TodoApp.Controllers
 {
+    [Authorize]
+    [EnableCors("AnyGET")]
     public class TodoWebController : Controller
     {
 
-        private readonly TodoService todoService;
+        private readonly ITodoService todoService;
 
-        public TodoWebController(TodoService todoService)
+        public TodoWebController(ITodoService todoService)
         {
             this.todoService = todoService;
         }
 
-        [HttpGet("")]
-        public IActionResult Index()
+        [HttpGet("/list")]
+        public IActionResult Index(string search)
         {
-            var todos = todoService.GetAllTodos();
+            var todos = todoService.GetTodoList(search);
             return View(todos);
         }
 
@@ -37,14 +37,14 @@ namespace TodoApp.Controllers
         public IActionResult AddTodo(Todo todo)
         {
             todoService.SaveTodo(todo);
-            return Redirect("/");
+            return Redirect("/list");
         }
 
         [HttpGet("/delete/{id}")]
         public IActionResult DeleteTodo(int id)
         {
             todoService.DeleteTodoById(id);
-            return Redirect("/");
+            return Redirect("/list");
         }
 
         [HttpGet("/edit/{id}")]
@@ -58,7 +58,7 @@ namespace TodoApp.Controllers
         public IActionResult EditTodo(int id, Todo todo)
         {
             todoService.SaveTodo(todo);
-            return Redirect("/");
+            return Redirect("/list");
         }
     }
 }

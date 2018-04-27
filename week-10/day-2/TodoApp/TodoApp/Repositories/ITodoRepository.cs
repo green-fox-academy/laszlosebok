@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using TodoApp.Models;
 
 namespace TodoApp.Repositories
@@ -12,5 +9,6 @@ namespace TodoApp.Repositories
         Todo FindTodoById(int id);
         void SaveTodo(Todo todo);
         void DeleteTodo(Todo todo);
+        List<Todo> FindTodosByTitle(string title);
     }
 }

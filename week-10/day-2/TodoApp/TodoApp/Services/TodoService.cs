@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using TodoApp.Models;
 using TodoApp.Repositories;
 
 namespace TodoApp.Services
 {
-    public class TodoService
+    public class TodoService : ITodoService
     {
 
         private readonly ITodoRepository todoRepository;
@@ -17,7 +14,7 @@ namespace TodoApp.Services
             this.todoRepository = todoRepository;
         }
 
-        public List<Todo> GetAllTodos()
+        private List<Todo> GetAllTodos()
         {
             return todoRepository.FindAllTodos();
         }
@@ -39,6 +36,11 @@ namespace TodoApp.Services
         public Todo GetTodoById(int id)
         {
             return todoRepository.FindTodoById(id);
+        }
+
+        public List<Todo> GetTodoList(string search)
+        {
+            return search == null ? GetAllTodos() : todoRepository.FindTodosByTitle(search);
         }
     }
 }

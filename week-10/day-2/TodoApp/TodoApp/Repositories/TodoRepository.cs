@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
 using TodoApp.Entities;
 using TodoApp.Models;
 
@@ -38,6 +35,11 @@ namespace TodoApp.Repositories
         {
             todoContext.Remove(todo);
             todoContext.SaveChanges();
+        }
+
+        public List<Todo> FindTodosByTitle(string title)
+        {
+            return todoContext.Todos.Where(todo => todo.Title.Contains(title)).ToList();
         }
     }
 }
